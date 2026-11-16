@@ -1,0 +1,13 @@
+# 温州 jrzp 独立域名已知答案（唯一来源，T1/T8/R2 都用这一份）
+# 11 个已确认；龙港 longgangrc.com 待 1 次首页确认
+cangnanrc.com
+pingyangrc.com
+yongjiarc.com
+wzwcrc.com
+wzlcrc.com
+wzlwrc.com
+wzohrc.com
+wzdtrc.com
+wztsrc.com
+wzyqrc.com
+wzrajob.com
