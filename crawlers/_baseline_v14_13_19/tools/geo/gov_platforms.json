@@ -1,0 +1,535 @@
+{
+  "_meta": {
+    "version": "v13.4.1",
+    "created": "2026-11-14",
+    "updated": "2026-11-15",
+    "purpose": "官方/政府类数据源名录：猜域名猜不到的，从这张表里来",
+    "fields": {
+      "name": "平台名",
+      "domain": "www 域名（只写 www 可达的那个）；空=该省未定位到统一平台",
+      "url": "首页完整地址（含路径/接口前缀）",
+      "level": "部 / 省 / 市 / 行业主管",
+      "kind": "招聘 / 法规 / 价格 / 天气 / 其他",
+      "verified": "实测日期，空=未验证",
+      "transport": "ssr_list / plain_api / spa / unknown",
+      "coverage": "unified=有省级统一入口 / fragmented=多线并存无单一入口 / unknown=未查明",
+      "evidence": "一句话证据（字节数/接口名/条数）",
+      "note": "注意事项（地域偏科、需登录等）"
+    },
+    "rule": "只写实测过的；未验的 verified 留空，不得进生产；没有统一平台就写 fragmented/unknown，不许硬凑域名",
+    "source": "人社部《各省公共就业服务平台》 http://job.mohrss.gov.cn/jy/index.jhtml —— 实测该页 1 个请求给出 32 条直链（31 省 + 兵团），不是 18 条；页面用图片当锚文本，必须从 href 抽，不能按可见文字抽",
+    "todo": "河南 www.hn91w.com 连续两次 20s 超时（网络侧），待换时间/换网络复验；其余已覆盖"
+  },
+  "部级": [
+    {
+      "name": "中国公共招聘网",
+      "domain": "job.mohrss.gov.cn",
+      "url": "http://job.mohrss.gov.cn/",
+      "level": "部",
+      "kind": "招聘",
+      "verified": "2026-11-14",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "该页即《各省公共就业服务平台》名单页：200 / 5,297 B / 32 条省级直链（图片锚文本）",
+      "note": "做名录的首选入口：1 个请求拿全国省级平台直链"
+    },
+    {
+      "name": "就业在线",
+      "domain": "www.jobonline.cn",
+      "url": "https://www.jobonline.cn/",
+      "level": "部",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unknown",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "北京": [
+    {
+      "name": "北京市人力资源和社会保障局就业超市",
+      "domain": "fuwu.rsj.beijing.gov.cn",
+      "url": "https://fuwu.rsj.beijing.gov.cn/zhrs/jycy/jyzbjpc/home",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部《各省公共就业服务平台》名单（2026-11-15 复核：15s 超时，需换时间再验）",
+      "note": ""
+    }
+  ],
+  "天津": [
+    {
+      "name": "天津公共招聘网",
+      "domain": "job.hrss.tj.gov.cn",
+      "url": "https://job.hrss.tj.gov.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单（2026-11-15 复核：15s 超时）",
+      "note": ""
+    }
+  ],
+  "河北": [
+    {
+      "name": "河北公共招聘网",
+      "domain": "rst.hebei.gov.cn",
+      "url": "https://rst.hebei.gov.cn/ggzp/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "山西": [
+    {
+      "name": "山西公共就业服务平台",
+      "domain": "sxjy.rst.shanxi.gov.cn",
+      "url": "https://sxjy.rst.shanxi.gov.cn:8099/portal-online/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "内蒙古": [
+    {
+      "name": "内蒙古公共招聘网",
+      "domain": "www.jynmg.cn",
+      "url": "https://www.jynmg.cn",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "辽宁": [
+    {
+      "name": "辽宁省人力资源市场",
+      "domain": "rlzy.lnrc.com.cn",
+      "url": "https://rlzy.lnrc.com.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "首页 200 / 11,690 B / 可见文字仅 9 字符 / title=辽宁省人力资源市场",
+      "note": "空壳，需找 XHR；域名不是 .gov.cn（lnrc=辽宁人才），接前先验归属"
+    }
+  ],
+  "_未归属": [
+    {
+      "name": "（人社部名单第 6 位的 IP 直链，省份不明）",
+      "domain": "111.41.62.147",
+      "url": "http://111.41.62.147:13332/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "unknown",
+      "coverage": "unknown",
+      "evidence": "2026-11-15 实测：ConnectionReset（远程主机强迫关闭连接），已下线或只对内网开放",
+      "note": "名单页用图片当锚文本，无法从页面判断它属哪个省；不要猜、不要用。保留只为记录「名单上的东西会过期」"
+    }
+  ],
+  "吉林": [
+    {
+      "name": "吉林人才网（吉林省人才市场）",
+      "domain": "www.jlrc.com.cn",
+      "url": "https://www.jlrc.com.cn/ww/index.html",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "ssr_list",
+      "coverage": "unified",
+      "evidence": "首页 200 / 327,618 B / 可见文字 10,859 字符 / title=吉林人才网-吉林省人才市场官方人才网",
+      "note": "★目前最值得接的省级站：SSR 有真实内容，不是 SPA；含登录入口但列表页可能免登录"
+    }
+  ],
+  "黑龙江": [
+    {
+      "name": "黑龙江省公共就业服务平台（人社部名单入口）",
+      "domain": "111.41.62.147",
+      "url": "https://111.41.62.147:13332/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "ssr_list",
+      "coverage": "unified",
+      "evidence": "https 200 / 24,239 B / 可见『按地区找工作·按薪资找工作·招聘公告·工作动态』；人社部名单里黑龙江就是这条 IP:端口。用 http 访问该端口会返回 400（plain HTTP to HTTPS port），这可能就是它被判成『打不开』的原因",
+      "note": "没有域名，只有 IP:13332；必须走 https，证书需单独确认（本次 verify=False 才通）"
+    }
+  ],
+  "上海": [
+    {
+      "name": "上海公共招聘网",
+      "domain": "jobs.rsj.sh.gov.cn",
+      "url": "https://jobs.rsj.sh.gov.cn/ggzp-shrs/index.html",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "人社部名单（2026-11-14 抽样：200 / 4,290 B《乐业上海第一站》）",
+      "note": "SPA 空壳"
+    }
+  ],
+  "江苏": [
+    {
+      "name": "“就在江苏”智慧就业服务平台",
+      "domain": "www.js365job.com",
+      "url": "https://www.js365job.com/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-14",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "首页 4,226 B / 可见 14 字符 / Vue+axios / 11 个 js；robots.txt 返回 200+首页 HTML（等于无 robots）",
+      "note": "接口前缀 /api/hrm/，要登录（2026-11-14 定位）；robots 是 HTML 这点要在引擎里定口径"
+    },
+    {
+      "name": "江苏省人才服务云平台",
+      "domain": "www.jssrcfwypt.org.cn",
+      "url": "https://www.jssrcfwypt.org.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "fragmented",
+      "evidence": "检索结果，未探",
+      "note": "与 js365job 并存，说明江苏也是多线"
+    }
+  ],
+  "浙江": [
+    {
+      "name": "浙江省公共就业服务平台",
+      "domain": "www.zjhr.com",
+      "url": "https://www.zjhr.com/010/client/list.jsp",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-14",
+      "transport": "plain_api",
+      "coverage": "unified",
+      "evidence": "POST /010/guestService/guestServiceAction!findTable12List8Page5.action 明文 JSON，total=15171；robots 返回 404（未设限）",
+      "note": "地域极偏：最新100条台州90；‘食品检验’376条中台州366（2026-11-14 复核）。不可当全省均衡源"
+    },
+    {
+      "name": "浙江人力资源大市场",
+      "domain": "www.zjrc.com",
+      "url": "https://www.zjrc.com/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-14",
+      "transport": "spa",
+      "coverage": "fragmented",
+      "evidence": "首页 200 / 3,434 B / 可见 15 字符 / title=浙江人力资源大市场 / 仅 <div id=app> + type=module 脚本",
+      "note": "待找 XHR baseURL；这个站就是 v13 被判成「镇江」丢掉的那个"
+    }
+  ],
+  "安徽": [
+    {
+      "name": "安徽公共招聘网",
+      "domain": "www.ahggzp.gov.cn",
+      "url": "https://www.ahggzp.gov.cn/ww/wwcaindex.html",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": "与吉林同为 /ww/ 路径，可能是同一套 CMS，可复用"
+    }
+  ],
+  "福建": [
+    {
+      "name": "福建就业网",
+      "domain": "www.fj99.org.cn",
+      "url": "https://www.fj99.org.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "首页 200 / 6,718 B / 可见 5 字符 / title=福建就业网 / 有 id=app 与 module 脚本",
+      "note": "SPA，需找 XHR"
+    }
+  ],
+  "江西": [
+    {
+      "name": "江西就业之家",
+      "domain": "jyzj.jxhrss.gov.cn",
+      "url": "https://jyzj.jxhrss.gov.cn/jyzj/qzweb/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "山东": [
+    {
+      "name": "山东省公共就业人才服务网上服务大厅",
+      "domain": "ggjyrc.hrss.shandong.gov.cn",
+      "url": "https://ggjyrc.hrss.shandong.gov.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "2024-09 改版上线公告（淄博人社 2024-09-03）；另见 hrss.shandong.gov.cn/sdjyweb/index.action",
+      "note": "需登录（省政务服务网/社保卡）｜人社部名单里给的是 www.sdggzp.cn，但 2026-11-15 实测：证书校验失败 + 502 Bad Gateway，暂不可用"
+    }
+  ],
+  "河南": [
+    {
+      "name": "河南人才网（人社部名单入口，未证实可用）",
+      "domain": "www.hn91w.com",
+      "url": "https://www.hn91w.com/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unknown",
+      "evidence": "2026-11-15 实测首页 ReadTimeout（20s）；人社部名单把它列为河南入口",
+      "note": "另据检索：河南省人才交流中心公共服务网，域名未定。河南多线并存（省人才中心 + 各市平台），先按 unknown"
+    }
+  ],
+  "湖北": [
+    {
+      "name": "湖北公共招聘网",
+      "domain": "www.hbggzp.cn",
+      "url": "https://www.hbggzp.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "ssr_list",
+      "coverage": "unified",
+      "evidence": "首页 200 / 15,553 B / 可见 501 字符 / title 为空 / 有登录入口",
+      "note": "半 SSR：能取到内容但 title 缺失，接前先确认列表页是否免登录"
+    }
+  ],
+  "湖南": [
+    {
+      "name": "湖南公共就业服务平台",
+      "domain": "ggfw.rst.hunan.gov.cn",
+      "url": "https://ggfw.rst.hunan.gov.cn/hrss-pw-ui-hunan/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "人社部名单（2026-11-14 抽样：200 / 8,407 B）",
+      "note": "SPA 空壳，名单直链直接跳登录页"
+    }
+  ],
+  "广东": [
+    {
+      "name": "广东公共就业服务平台",
+      "domain": "ggfw.hrss.gd.gov.cn",
+      "url": "https://ggfw.hrss.gd.gov.cn/recruitment/internet/main/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "人社部名单（2026-11-14 抽样：200 / 2,845 B）",
+      "note": "SPA 空壳"
+    }
+  ],
+  "广西": [
+    {
+      "name": "广西公共招聘网",
+      "domain": "www.gx12333.net",
+      "url": "https://www.gx12333.net/gxjy/home",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "海南": [
+    {
+      "name": "海南招聘网",
+      "domain": "zhaopin.hainan.gov.cn",
+      "url": "https://zhaopin.hainan.gov.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "重庆": [
+    {
+      "name": "重庆就业网",
+      "domain": "ggfw.rlsbj.cq.gov.cn",
+      "url": "http://ggfw.rlsbj.cq.gov.cn/cqjy/business/website/job/jobindex.html",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "四川": [
+    {
+      "name": "四川公共招聘网",
+      "domain": "www.sc91.org.cn",
+      "url": "https://www.sc91.org.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "ssr_list",
+      "coverage": "unified",
+      "evidence": "首页 200（http 自动跳 https）/ 78,662 B / 可见 1,543 字符 / title=四川公共招聘网",
+      "note": "★SSR 有内容，和第二值得接的省站；含登录入口，先验列表页是否免登录"
+    }
+  ],
+  "贵州": [
+    {
+      "name": "贵州公共招聘网",
+      "domain": "gzggzpw.gzsrs.cn",
+      "url": "https://gzggzpw.gzsrs.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "首页 200 / 6,623 B / 可见 9 字符 / title 为空 / 有 id=app",
+      "note": "SPA 空壳"
+    }
+  ],
+  "云南": [
+    {
+      "name": "云南公共就业服务平台",
+      "domain": "ynsjyj.cn",
+      "url": "https://ynsjyj.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "人社部名单（2026-11-14 抽样：200 / 8,197 B）",
+      "note": "SPA 空壳"
+    }
+  ],
+  "西藏": [
+    {
+      "name": "西藏公共就业服务网",
+      "domain": "zp.xzggjyfw.cn",
+      "url": "https://zp.xzggjyfw.cn",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "陕西": [
+    {
+      "name": "秦云就业企业用工供需平台",
+      "domain": "qinyunjiuye.cn",
+      "url": "https://qinyunjiuye.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "ssr_list",
+      "coverage": "unified",
+      "evidence": "首页 200 / 60,637 B / 可见 813 字符 / title=秦云就业企业用工供需平台",
+      "note": "半 SSR，主体是政企对接 + 登录；先看列表页能不能免登录"
+    }
+  ],
+  "甘肃": [
+    {
+      "name": "甘肃公共就业服务平台",
+      "domain": "ggjyfw.rst.gansu.gov.cn",
+      "url": "https://ggjyfw.rst.gansu.gov.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "人社部名单（2026-11-14 抽样：200 / 4,958 B《如意就业》）",
+      "note": "SPA 空壳"
+    }
+  ],
+  "青海": [
+    {
+      "name": "青海省人社政务服务一体化平台",
+      "domain": "qhrsggfw.org.cn",
+      "url": "https://qhrsggfw.org.cn/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "名单里的 jspx 深链 200 / 3,113 B，但被 302 回根域 / 可见 14 字符",
+      "note": "深链失效，落在政务服务一体化平台首页；要抓招聘得再找栏目"
+    }
+  ],
+  "宁夏": [
+    {
+      "name": "宁夏公共就业服务平台",
+      "domain": "12333.hrss.nx.gov.cn",
+      "url": "https://12333.hrss.nx.gov.cn/nxggfw/nxggfw/",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ],
+  "新疆": [
+    {
+      "name": "中国新疆人才网",
+      "domain": "www.xjrc365.com",
+      "url": "https://www.xjrc365.com/recruit/page/index",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "2026-11-15",
+      "transport": "spa",
+      "coverage": "unified",
+      "evidence": "首页 200 / 5,701 B / 可见 39 字符 / title=中国新疆人才网 / 有 id=app",
+      "note": "SPA 空壳，需找 XHR"
+    }
+  ],
+  "新疆兵团": [
+    {
+      "name": "兵团就业服务网",
+      "domain": "www.btjyfw.com",
+      "url": "http://www.btjyfw.com",
+      "level": "省",
+      "kind": "招聘",
+      "verified": "",
+      "transport": "unknown",
+      "coverage": "unified",
+      "evidence": "人社部名单",
+      "note": ""
+    }
+  ]
+}

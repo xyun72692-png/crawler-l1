@@ -1,0 +1,23 @@
+# Line endings are locked: repo stores LF, checkout gives LF.
+# Why: the baseline manifest pins byte-level MD5. Git for Windows ships
+# core.autocrlf=true at system level, so a fresh clone used to convert
+# every .py/.json to CRLF (gate.py 7,313 B -> 7,520 B) and
+# verify_baseline.py reported "snapshot corrupted (43 changed)".
+# That was a line-ending artifact, not a code problem.
+* text=auto eol=lf
+
+# Binary: never touch (includes samples under tests/data)
+*.png binary
+*.gif binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.bin binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.7z binary
+*.xls binary
+*.xlsx binary
+*.doc binary
+*.docx binary

@@ -1,0 +1,10 @@
+{
+  "cards": 0,
+  "declared_total_pages": null,
+  "page_url": "https://yq.wzrc.net/index.php?m=&c=Jobs&a=jobs_list&jobtag=147&page=1",
+  "rows": [],
+  "sample": "_probe_yqwzrc.html",
+  "sample_bytes": 147282,
+  "site": "yqwzrc",
+  "total_pages_pattern": "</span>\\s*/\\s*(\\d+)\\s*页"
+}

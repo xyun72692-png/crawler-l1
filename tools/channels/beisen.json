@@ -1,0 +1,26 @@
+{
+  "id": "beisen",
+  "kind": "channel",
+  "priority": 50,
+  "name": "北森 zhiye.com 招聘站",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "BSGlobal"
+      },
+      {
+        "html_contains": "acdn.bstatics.com"
+      },
+      {
+        "html_contains": "italent.cn"
+      }
+    ]
+  },
+  "form": "ats_api",
+  "channel": "beisen",
+  "transport": "plain",
+  "capability": "ok",
+  "est_volume": "几十~几千条（按租户）",
+  "next_step": "GET /portal/registerSystemInfo 取 PortalId → POST /api/Jobad/GetJobAdPageList；DisplayFields 必须 LocNames+LocId 成对（tools/beisen_client.py）",
+  "doc": "docs/北森适配器-20261114.md"
+}
