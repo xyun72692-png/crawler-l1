@@ -1,0 +1,24 @@
+{
+  "id": "waf_same_bytes",
+  "kind": "rule0",
+  "priority": 10,
+  "name": "WAF：home 与 robots.txt 字节完全相同（且页面 >10KB，排除 SPA 回退）",
+  "detect": {
+    "all": [
+      {
+        "home_robots_same_bytes": true
+      },
+      {
+        "size_gt": 10000
+      }
+    ]
+  },
+  "status": "blocked",
+  "form": "",
+  "channel": "unknown",
+  "transport": "none",
+  "capability": "blocked",
+  "est_volume": "不可用",
+  "next_step": "按 Rule0 停：同 MD5 说明所有路径都返回同一个 WAF 页，不再尝试",
+  "doc": "docs/Rule0-不碰清单.md"
+}

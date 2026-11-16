@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crawler-l1"
+version = "14.13.19"
+description = "合规优先的服务端渲染爬虫引擎（robots 四态判定 / 请求闸门 / 断点续跑 / 附件下载 / 报告状态机）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "yunx", email = "341502219+xyun72692-png@users.noreply.github.com" }]
+
+# 只列「直接依赖」。间接依赖（certifi / idna / h11 / urllib3 / cffi / pycparser …）
+# 交给解析器处理，不再手工钉死 —— 手工钉间接依赖会让新 Python 版本装不上。
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+# 批量渲染（JS 站点）—— 需要额外执行 `playwright install chromium`
+render = ["playwright>=1.40"]
+# 传输层：TLS 指纹与 UA 对齐（cffi 档）
+transport = ["curl_cffi>=0.7", "brotli>=1.1", "zstandard>=0.22"]
+# 老 .xls 解析与表格加工
+excel = ["xlrd>=2.0", "pandas>=2.0"]
+# 本地开发/回归
+dev = ["pytest>=8.0"]
+
+# 本仓库不是 Python 包，不参与打包（用 requirements.txt 或 pip install -e .[dev] 均可）
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+# 六套测试都是「脚本式」（python tests/test_xxx.py），这里只声明测试目录
+testpaths = ["tests"]

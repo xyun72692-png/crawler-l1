@@ -1,0 +1,24 @@
+{
+  "id": "waf_meta",
+  "kind": "rule0",
+  "priority": 11,
+  "name": "WAF：页面含 aliyun_waf 标记",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "aliyun_waf_aa"
+      },
+      {
+        "html_contains": "aliyun_waf_bb"
+      }
+    ]
+  },
+  "status": "blocked",
+  "form": "",
+  "channel": "unknown",
+  "transport": "none",
+  "capability": "blocked",
+  "est_volume": "不可用",
+  "next_step": "按 Rule0 停：商业 WAF 挑战页，不绕过",
+  "doc": "docs/Rule0-不碰清单.md"
+}
