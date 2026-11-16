@@ -1,0 +1,27 @@
+{
+  "id": "encrypted_api",
+  "kind": "rule0",
+  "priority": 70,
+  "name": "加密签名接口（不逆向）",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "HmacSHA256"
+      },
+      {
+        "html_contains": "nbrcafter"
+      },
+      {
+        "html_contains": "zpapi"
+      }
+    ]
+  },
+  "status": "blocked",
+  "form": "encrypted_api",
+  "channel": "unknown",
+  "transport": "none",
+  "capability": "blocked",
+  "est_volume": "不可用",
+  "next_step": "接口带加密签名（AES/HMAC）→ 按红线不逆向；只能等渲染档或放弃",
+  "doc": "docs/jrzp签名接口结论-20261114.md"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "dayee_new",
+  "kind": "channel",
+  "priority": 50,
+  "name": "大易 wecruit 新版（/SU<id>/pb/…）",
+  "detect": {
+    "any": [
+      {
+        "url_regex": "/SU[0-9a-zA-Z]+/pb/"
+      },
+      {
+        "html_contains": "/pb/js/vendor.js"
+      }
+    ]
+  },
+  "form": "spa",
+  "channel": "dayee_new",
+  "transport": "browser",
+  "capability": "needs_v14",
+  "est_volume": "未知（接口未通）",
+  "next_step": "SPA 壳，接口未找到 → 标 spa，等 v14 渲染档；不要在这上面猜接口",
+  "doc": "docs/b2判定-四家官网-20261114.md",
+  "status": "unknown"
+}

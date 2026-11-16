@@ -1,0 +1,38 @@
+{
+  "id": "spa_generic",
+  "kind": "generic",
+  "priority": 90,
+  "name": "通用 SPA 空壳（无接口线索）",
+  "detect": {
+    "any": [
+      {
+        "all": [
+          {
+            "size_lt": 6000
+          },
+          {
+            "html_contains": "type=\"module\""
+          }
+        ]
+      },
+      {
+        "all": [
+          {
+            "size_lt": 6000
+          },
+          {
+            "visible_text_lt": 300
+          }
+        ]
+      }
+    ]
+  },
+  "status": "unknown",
+  "form": "spa",
+  "channel": "unknown",
+  "transport": "browser",
+  "capability": "needs_v14",
+  "est_volume": "未知",
+  "next_step": "纯前端渲染，plain 拿不到内容 → 标 spa，等 v14 T2 渲染档",
+  "doc": "docs/第2类城市站探测-20261114.md"
+}

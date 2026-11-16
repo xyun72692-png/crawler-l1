@@ -1,0 +1,26 @@
+{
+  "id": "destoon",
+  "kind": "channel",
+  "priority": 50,
+  "name": "DESTOON（B2B/行业站老 CMS）",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "DESTOON"
+      },
+      {
+        "html_contains": "Powered by DESTOON"
+      },
+      {
+        "html_contains": "destoon.com"
+      }
+    ]
+  },
+  "form": "ssr_list",
+  "channel": "destoon",
+  "transport": "plain",
+  "capability": "ok",
+  "est_volume": "几百~几千条（按频道）",
+  "next_step": "HTML 列表直抓（GBK 常见）；食品伙伴网已有适配器 sites/foodmate.py 可复用",
+  "doc": "docs/foodmate-全量245页-20261114.md"
+}

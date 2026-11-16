@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0",
+  "rules_version": "2026-11-14.1",
+  "updated": "2026-11-14",
+  "note": "判据全在本目录的 JSON 里；identify.py 只负责匹配，不认识任何具体域名"
+}
