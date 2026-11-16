@@ -1,0 +1,26 @@
+{
+  "id": "jpaas",
+  "kind": "channel",
+  "priority": 50,
+  "name": "jpaas（浙江政务云 CMS）",
+  "detect": {
+    "all": [
+      {
+        "html_contains": "unitbuild"
+      },
+      {
+        "html_contains": "jpaas-publish-server"
+      },
+      {
+        "html_contains": "queryData"
+      }
+    ]
+  },
+  "form": "plain_api",
+  "channel": "jpaas",
+  "transport": "plain",
+  "capability": "ok",
+  "est_volume": "按栏目，几十~几百条",
+  "next_step": "从 <script src=…unitbuild.js> 的 queryData 抠 7 参数 → GET build/unit，分页用 paramJson={pageNo,pageSize}（tools/jpaas_list.py）",
+  "doc": "docs/jpaas接口-通了-20261114.md"
+}

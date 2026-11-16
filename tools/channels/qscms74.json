@@ -1,0 +1,26 @@
+{
+  "id": "qscms74",
+  "kind": "channel",
+  "priority": 50,
+  "name": "74cms / 骑士人才系统",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "c=Jobs&a=jobs_list"
+      },
+      {
+        "html_contains": "74cms"
+      },
+      {
+        "html_contains": "骑士人才"
+      }
+    ]
+  },
+  "form": "ssr_list",
+  "channel": "qscms74",
+  "transport": "plain",
+  "capability": "ok",
+  "est_volume": "几百~几千条（5 条/页）",
+  "next_step": "HTML 列表直抓：index.php?m=&c=Jobs&a=jobs_list；可用 key/jobtag/wage/trade/citycategory 组合（sites/wzrc_all.py）",
+  "doc": "docs/IR-温州人才网-20261111.md"
+}

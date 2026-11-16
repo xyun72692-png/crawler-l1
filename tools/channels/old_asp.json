@@ -1,0 +1,26 @@
+{
+  "id": "old_asp",
+  "kind": "channel",
+  "priority": 50,
+  "name": "老 ASP 城市人才网",
+  "detect": {
+    "all": [
+      {
+        "url_regex": "\\.asp(\\?|$)"
+      },
+      {
+        "count_regex_min": {
+          "regex": "JobId=",
+          "min": 10
+        }
+      }
+    ]
+  },
+  "form": "ssr_list",
+  "channel": "old_asp",
+  "transport": "plain",
+  "capability": "ok",
+  "est_volume": "几十~几千条（一页几十条）",
+  "next_step": "HTML 列表直抓：列表页 .asp + 详情 job.asp?JobId=；常见 GBK；行业切片 hangye.asp?jyrcwhyflid=14",
+  "doc": "docs/第2类老ASP站-南京-20261114.md"
+}

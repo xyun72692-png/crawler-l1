@@ -1,0 +1,26 @@
+{
+  "id": "dayee_old",
+  "kind": "channel",
+  "priority": 50,
+  "name": "大易 hotjob 老版（/wt/{tenant}/web/…）",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "gotoPostListForAjax"
+      },
+      {
+        "html_regex": "/wt/[a-z0-9]+/web/json/position/list"
+      },
+      {
+        "url_regex": "/wt/[a-z0-9]+/web/"
+      }
+    ]
+  },
+  "form": "ats_api",
+  "channel": "dayee_old",
+  "transport": "plain",
+  "capability": "ok",
+  "est_volume": "几百~几千条",
+  "next_step": "GET /wt/{tenant}/web/json/position/list?…&page=N（分页参数是 page 不是 pageNo；recruitType 1校招/2社招；每页固定 10）（tools/hotjob_client.py）",
+  "doc": "docs/伊利hotjob与jrzp列表页-20261114.md"
+}

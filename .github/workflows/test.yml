@@ -1,0 +1,152 @@
+name: test
+
+# 目的：让「别人 clone 能不能跑」这件事每次提交都自动回答一次。
+# 只跑离线六套 + 基线校验；需要本机抓取产物的 compare / guard 不在 CI 里跑。
+#
+# v14.13.20 起：
+#   · 每套输出 tee 到 logs/*.log
+#   · 失败时把 FAIL 行写成 GitHub Annotation（未登录也能在 run 页面看到）
+#   · 同时写进 Job Summary 并上传 artifacts
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  six-suites:
+    name: ${{ matrix.os }} / py${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+
+    env:
+      # 根治 windows runner 的 cp1252：UTF-8 模式下 open()/write_text()
+      # 默认用 utf-8，不再跟随 locale，写中文不会再抛 charmap。
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: 行尾与工作区准备
+        shell: bash
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+          mkdir -p logs
+          echo "pwd=$(pwd)"
+          echo "tracked=$(git ls-files | wc -l)"
+
+      - name: 安装依赖（只用 requirements.txt，模拟真实用户）
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: 环境自检
+        shell: bash
+        run: |
+          python -c "import sys,requests,bs4,lxml,openpyxl;print('deps ok',sys.version.split()[0],'utf8_mode=',sys.flags.utf8_mode,'stdout=',sys.stdout.encoding)"
+
+      - name: test_crawler
+        shell: bash
+        env:
+          CRAWLER_TEST_TMP: ${{ runner.temp }}/cases
+        run: |
+          set -o pipefail
+          python tests/test_crawler.py 2>&1 | tee logs/01_crawler.log
+
+      - name: test_discover
+        shell: bash
+        run: |
+          set -o pipefail
+          python tests/test_discover.py 2>&1 | tee logs/02_discover.log
+
+      - name: test_identify
+        shell: bash
+        run: |
+          set -o pipefail
+          python tests/test_identify.py 2>&1 | tee logs/03_identify.log
+
+      - name: test_transport
+        shell: bash
+        run: |
+          set -o pipefail
+          python tests/test_transport.py 2>&1 | tee logs/04_transport.log
+
+      - name: test_rule0
+        shell: bash
+        run: |
+          set -o pipefail
+          python tests/test_rule0.py 2>&1 | tee logs/05_rule0.log
+
+      - name: test_render_batch
+        shell: bash
+        run: |
+          set -o pipefail
+          python tests/test_render_batch.py 2>&1 | tee logs/06_render_batch.log
+
+      - name: 基线校验（副本完整性 + 源漂移）
+        shell: bash
+        run: |
+          set -o pipefail
+          python tests/verify_baseline.py --strict --check-source 2>&1 | tee logs/07_verify.log
+
+      # 未登录也能看见：把失败行做成 Annotation
+      - name: 失败注解
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          for f in logs/*.log; do
+            if [ -f "$f" ]; then
+              name=$(basename "$f")
+              grep "FAIL" "$f" | head -8 | while IFS= read -r line; do
+                echo "::error title=${name}::${line}"
+              done
+            fi
+          done
+          grep -h -E "Traceback|Error:|Exception" logs/*.log 2>/dev/null | head -8 | while IFS= read -r line; do
+            echo "::error title=exception::${line}"
+          done
+
+      - name: 失败摘要（Job Summary）
+        if: failure()
+        shell: bash
+        run: |
+          {
+            echo "## 失败摘要（${{ matrix.os }} / py${{ matrix.python }}）"
+            echo ""
+            echo '```'
+            grep -h "FAIL" logs/*.log 2>/dev/null | head -40
+            echo '```'
+            echo ""
+            echo "### 各套最后 15 行"
+            for f in logs/*.log; do
+              if [ -f "$f" ]; then
+                echo "<details><summary>$f</summary>"
+                echo ""
+                echo '```'
+                tail -15 "$f"
+                echo '```'
+                echo "</details>"
+              fi
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 上传日志（失败时）
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ matrix.os }}
+          path: logs/
+          retention-days: 7

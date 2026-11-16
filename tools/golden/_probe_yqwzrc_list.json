@@ -1,0 +1,81 @@
+{
+  "cards": 5,
+  "declared_total_pages": 230,
+  "page_url": "https://yq.wzrc.net/index.php?m=&c=Jobs&a=jobs_list&page=1",
+  "rows": [
+    {
+      "company": "杭州肯德基有限公司",
+      "detail_url": "https://yq.wzrc.net/index.php?m=&c=jobs&a=jobs_show&id=d906ae475e4c6c69fbd559ec433791b6",
+      "edu_req": "大专",
+      "exp_req": "无经验",
+      "headcount": "10人",
+      "job_nature": "全职",
+      "published": "13小时前",
+      "region": "浙江/温州/乐清市",
+      "salary_raw": "4K-6K/月",
+      "source_site": "温州人才网乐清分站",
+      "title": "乐清KFC肯德基楼面经理（就近安排）",
+      "welfare": "环境好|五险一金|交通方便|管理规范|有年假|晋升快"
+    },
+    {
+      "company": "乐清市示例甲紧固件制造有限公司",
+      "detail_url": "https://yq.wzrc.net/index.php?m=&c=jobs&a=jobs_show&id=90c242251dd8ae88450d7bbadcb6d494",
+      "edu_req": "中专",
+      "exp_req": "无经验",
+      "headcount": "2人",
+      "job_nature": "全职",
+      "published": "14小时前",
+      "region": "浙江/温州/乐清市",
+      "salary_raw": "4.2K-5.5K/月",
+      "source_site": "温州人才网乐清分站",
+      "title": "成品检验员",
+      "welfare": "管理规范|技术培训"
+    },
+    {
+      "company": "乐清市示例甲紧固件制造有限公司",
+      "detail_url": "https://yq.wzrc.net/index.php?m=&c=jobs&a=jobs_show&id=31f353b132b3f4b0a935452275f1e139",
+      "edu_req": "中专",
+      "exp_req": "1-3年",
+      "headcount": "1人",
+      "job_nature": "全职",
+      "published": "14小时前",
+      "region": "浙江/温州/乐清市",
+      "salary_raw": "5.5K-8K/月",
+      "source_site": "温州人才网乐清分站",
+      "title": "中速冲压操作工（模内攻牙）",
+      "welfare": "管理规范|技术培训"
+    },
+    {
+      "company": "乐清市示例甲紧固件制造有限公司",
+      "detail_url": "https://yq.wzrc.net/index.php?m=&c=jobs&a=jobs_show&id=16600f6c280f5557aa3fde42d5cc40ba",
+      "edu_req": "中专",
+      "exp_req": "5-10年",
+      "headcount": "2人",
+      "job_nature": "全职",
+      "published": "14小时前",
+      "region": "浙江/温州/乐清市",
+      "salary_raw": "6K-12K/月",
+      "source_site": "温州人才网乐清分站",
+      "title": "数控自动仪表老师",
+      "welfare": "管理规范|技术培训"
+    },
+    {
+      "company": "浙江示例电气有限公司",
+      "detail_url": "https://yq.wzrc.net/index.php?m=&c=jobs&a=jobs_show&id=be89f9917e5983a114d8be3e320be73b",
+      "edu_req": "大专",
+      "exp_req": "1-3年",
+      "headcount": "2人",
+      "job_nature": "全职",
+      "published": "14小时前",
+      "region": "浙江/温州/乐清市",
+      "salary_raw": "7K-10K/月",
+      "source_site": "温州人才网乐清分站",
+      "title": "断路器技术员",
+      "welfare": "环境好|管理规范|全勤奖|有补助|晋升快|房贴"
+    }
+  ],
+  "sample": "_probe_yqwzrc_list.html",
+  "sample_bytes": 75037,
+  "site": "yqwzrc",
+  "total_pages_pattern": "</span>\\s*/\\s*(\\d+)\\s*页"
+}

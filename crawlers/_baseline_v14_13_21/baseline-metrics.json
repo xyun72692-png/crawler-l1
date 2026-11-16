@@ -1,0 +1,228 @@
+{
+  "frozen_at": "2026-11-10",
+  "purpose": "阶段0回归基线：改动前后必须逐项比对",
+  "python": "3.12.10",
+  "jobs": [
+    {
+      "job": "foodlaw",
+      "path": "D:\\agent-work\\data\\raw\\foodlaw.jsonl",
+      "bytes": 40795,
+      "md5": "ce355339ea7e086dccbb11cca4a2b9bb",
+      "records": 40,
+      "dedup_key": "detail_url",
+      "dedup_key_nonblank": 40,
+      "dedup_key_unique": 40,
+      "duplicate_count": 0,
+      "field_count": 21,
+      "fields": [
+        "abolish_date",
+        "attr",
+        "content_hash",
+        "detail_fetch",
+        "detail_fetched_at",
+        "detail_http_status",
+        "detail_title",
+        "detail_url",
+        "doc_no",
+        "effective_date",
+        "fetched_at",
+        "http_status",
+        "issuer",
+        "list_date",
+        "publish_date",
+        "run_id",
+        "source_url",
+        "status_confirmed",
+        "status_img",
+        "title",
+        "valid_status"
+      ],
+      "blank_fields": {},
+      "detail_fetch_values": {
+        "ok": 40
+      },
+      "detail_http_status_values": {
+        "200": 40
+      },
+      "valid_status_values": {
+        "即将实施": 5,
+        "现行有效": 35
+      },
+      "status_confirmed_values": {
+        "False": 5,
+        "True": 35
+      }
+    },
+    {
+      "job": "quotes",
+      "path": "D:\\agent-work\\data\\raw\\quotes.jsonl",
+      "bytes": 49664,
+      "md5": "99290005f028b892eb6182030c8eabb5",
+      "records": 100,
+      "dedup_key": "quote_key",
+      "dedup_key_nonblank": 100,
+      "dedup_key_unique": 100,
+      "duplicate_count": 0,
+      "field_count": 11,
+      "fields": [
+        "author",
+        "author_url",
+        "content_hash",
+        "fetched_at",
+        "http_status",
+        "quote_key",
+        "run_id",
+        "source_url",
+        "tag_count",
+        "tags",
+        "title"
+      ],
+      "blank_fields": {
+        "tags": 3
+      },
+      "detail_fetch_values": {},
+      "detail_http_status_values": {},
+      "valid_status_values": {},
+      "status_confirmed_values": {}
+    },
+    {
+      "job": "books",
+      "path": "D:\\agent-work\\data\\raw\\books.jsonl",
+      "bytes": 528839,
+      "md5": "7170b98cd4cf5f5769dd5120abda7890",
+      "records": 1000,
+      "dedup_key": "detail_url",
+      "dedup_key_nonblank": 1000,
+      "dedup_key_unique": 1000,
+      "duplicate_count": 0,
+      "field_count": 11,
+      "fields": [
+        "availability",
+        "content_hash",
+        "detail_url",
+        "fetched_at",
+        "http_status",
+        "price_raw",
+        "rating",
+        "run_id",
+        "source_url",
+        "thumb_url",
+        "title"
+      ],
+      "blank_fields": {},
+      "detail_fetch_values": {},
+      "detail_http_status_values": {},
+      "valid_status_values": {},
+      "status_confirmed_values": {}
+    }
+  ],
+  "report": {
+    "file": "report-foodlaw-20261110-142827-597.json",
+    "md5": "631e645a098505080b090965368db70c",
+    "status": "success",
+    "reason": "ok",
+    "mode": "full",
+    "rc": null,
+    "field_signature_count": 16,
+    "field_signature": [
+      "abolish_date",
+      "attr",
+      "detail_fetch",
+      "detail_fetched_at",
+      "detail_http_status",
+      "detail_title",
+      "detail_url",
+      "doc_no",
+      "effective_date",
+      "issuer",
+      "list_date",
+      "publish_date",
+      "status_confirmed",
+      "status_img",
+      "title",
+      "valid_status"
+    ],
+    "datafile": {
+      "records_before_run": 0,
+      "records_new_this_run": 40,
+      "records_dup_this_run": 0,
+      "total_after_run": 40
+    },
+    "per_page_summary": {
+      "pages_recorded": 2,
+      "min": 20,
+      "max": 20,
+      "avg": 20.0
+    },
+    "anomalies_count": 0,
+    "stats": {
+      "pages_total": 2,
+      "pages_ok": 2,
+      "pages_skipped": 0,
+      "pages_empty": 0,
+      "pages_blocked": 0,
+      "pages_failed": 0,
+      "records_new": 40,
+      "records_dup": 0,
+      "detail_failed": 0
+    }
+  },
+  "exports": {
+    "csv": {
+      "exists": true,
+      "bytes": 27926,
+      "md5": "bc91499c0619175abccd80dac032b803"
+    },
+    "json": {
+      "exists": true,
+      "bytes": 47197,
+      "md5": "516ee13f6aa96650b1c6f4c9a4b8e4f4"
+    },
+    "xlsx": {
+      "exists": true,
+      "bytes": 13965,
+      "md5": "05285950ea029d38a59a37d6e5c3fc49"
+    },
+    "csv_rows": 40,
+    "csv_cols": 23,
+    "csv_header": [
+      "title",
+      "detail_url",
+      "list_date",
+      "detail_http_status",
+      "detail_title",
+      "publish_date",
+      "status_img",
+      "effective_date",
+      "abolish_date",
+      "issuer",
+      "doc_no",
+      "attr",
+      "detail_fetch",
+      "detail_fetched_at",
+      "valid_status",
+      "status_confirmed",
+      "status_derived",
+      "source_url",
+      "fetched_at",
+      "fetched_date",
+      "http_status",
+      "content_hash",
+      "run_id"
+    ]
+  },
+  "tests": {
+    "log": "logs/_crawler_tests_latest.txt",
+    "md5": "835d16d39faf7c4bf9af3478b0a5ef5f",
+    "passed": 330,
+    "failed": 0,
+    "summary": [
+      "结果: 217/217 通过",
+      "结果：32/32 通过",
+      "结果：21 通过 / 0 失败",
+      "结果：23 通过 / 0 失败",
+      "结果：17 通过 / 0 失败",
+      "结果：20 通过 / 0 失败"
+    ]
+  }
+}

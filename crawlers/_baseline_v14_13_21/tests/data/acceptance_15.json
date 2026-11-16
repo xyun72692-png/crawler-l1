@@ -1,0 +1,165 @@
+[
+  {
+    "key": "wzrc",
+    "url": "https://www.wzrc.net/index.php?m=&c=Jobs&a=jobs_list",
+    "html": "_probe_wzrc_dw_p1.html",
+    "expect": {
+      "channel": "qscms74",
+      "form": "ssr_list",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "njrcw",
+    "url": "https://www.njrcw.com/zhaopin.asp",
+    "html": "fixtures/probe74_njrcw_zhaopin.html",
+    "expect": {
+      "channel": "old_asp",
+      "form": "ssr_list",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "rlsbt",
+    "url": "https://rlsbt.zj.gov.cn/col/col1229736433/index.html",
+    "html": "_probe_c_rlsbt_zj_gov_cn_col.html",
+    "expect": {
+      "channel": "jpaas",
+      "form": "plain_api",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "hz_hrss",
+    "url": "https://hrss.hangzhou.gov.cn/col/col1229266098/index.html",
+    "html": "fixtures/hz_hrss_home.html",
+    "expect": {
+      "channel": "jpaas",
+      "form": "plain_api",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "zjks",
+    "url": "https://www.zjks.com/col/col1229635556/index.html",
+    "html": "fixtures/probe_zjks_col.html",
+    "expect": {
+      "channel": "jpaas",
+      "form": "plain_api",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "shuanghui",
+    "url": "https://shuanghui.zhiye.com/",
+    "html": "fixtures/beisen_shuanghui_home.html",
+    "expect": {
+      "channel": "beisen",
+      "form": "ats_api",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "mengniu",
+    "url": "https://mengniu.zhiye.com/",
+    "html": "",
+    "expect": {
+      "channel": "beisen",
+      "form": "ats_api",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "yili",
+    "url": "https://yili.hotjob.cn/wt/yili/web/index/webPositionN300!getPositionList",
+    "html": "fixtures/hotjob_yili_list.html",
+    "expect": {
+      "channel": "dayee_old",
+      "form": "ats_api",
+      "status": "ok",
+      "capability": "ok"
+    }
+  },
+  {
+    "key": "wecruit",
+    "url": "https://wecruit.hotjob.cn/SU646ed8970dcad45af1482154/pb/school.html",
+    "html": "fixtures/probe_hotjob_social.html",
+    "expect": {
+      "channel": "dayee_new",
+      "form": "spa",
+      "status": "unknown",
+      "capability": "needs_v14"
+    }
+  },
+  {
+    "key": "cangnan",
+    "url": "https://www.cangnanrc.com/",
+    "html": "_probe_cangnan_home.html",
+    "expect": {
+      "channel": "jrzp",
+      "form": "encrypted_api",
+      "status": "ok",
+      "capability": "blocked"
+    }
+  },
+  {
+    "key": "chinahzrc",
+    "url": "https://www.chinahzrc.com/job.shtml",
+    "html": "fixtures/probe_杭州_job.html",
+    "expect": {
+      "channel": "jrzp",
+      "form": "encrypted_api",
+      "status": "ok",
+      "capability": "blocked"
+    }
+  },
+  {
+    "key": "ningborcw",
+    "url": "https://www.ningborcw.com/job.shtml",
+    "html": "fixtures/probe_宁波_job.html",
+    "expect": {
+      "channel": "jrzp",
+      "form": "encrypted_api",
+      "status": "ok",
+      "capability": "blocked"
+    }
+  },
+  {
+    "key": "hzrc",
+    "url": "https://www.hzrc.com/",
+    "html": "fixtures/probe_杭州人才网_home.html",
+    "expect": {
+      "channel": "unknown",
+      "form": "spa",
+      "status": "unknown",
+      "capability": "needs_v14"
+    }
+  },
+  {
+    "key": "zjamr",
+    "url": "https://zjamr.zj.gov.cn/",
+    "html": "fixtures/_probe_a2_zjamr_zj_gov_cn_home.html",
+    "robots": "fixtures/_probe_a2_zjamr_zj_gov_cn_robots.txt",
+    "expect": {
+      "status": "blocked",
+      "capability": "blocked"
+    }
+  },
+  {
+    "key": "cti",
+    "url": "https://www.cti-cert.com/",
+    "html": "fixtures/_probe_c_www_cti_cert_com_home.html",
+    "robots": "fixtures/_probe_c_www_cti_cert_com_robots.txt",
+    "expect": {
+      "status": "blocked",
+      "capability": "blocked"
+    }
+  }
+]

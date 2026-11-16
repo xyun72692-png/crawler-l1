@@ -1,0 +1,24 @@
+{
+  "id": "waf_robots",
+  "kind": "rule0",
+  "priority": 12,
+  "name": "WAF：robots.txt 本身就是挑战页",
+  "detect": {
+    "any": [
+      {
+        "robots_contains": "aliyun_waf_aa"
+      },
+      {
+        "robots_contains": "aliyun_waf_bb"
+      }
+    ]
+  },
+  "status": "blocked",
+  "form": "",
+  "channel": "unknown",
+  "transport": "none",
+  "capability": "blocked",
+  "est_volume": "不可用",
+  "next_step": "按 Rule0 停：连 robots.txt 都返回挑战页，说明全站被 WAF 拦，不绕过",
+  "doc": "docs/Rule0-不碰清单.md"
+}

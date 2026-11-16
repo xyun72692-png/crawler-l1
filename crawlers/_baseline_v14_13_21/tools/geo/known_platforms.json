@@ -1,0 +1,114 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "updated": "2026-11-15",
+    "default_ttl_days": 180,
+    "rule": "命中即给出先验结论；过期不删，只降级为 stale 并提示重验；usable 类结论仍必须实探"
+  },
+  "platforms": [
+    {
+      "id": "lagou",
+      "match": {"domains": ["lagou.com"]},
+      "platform": "拉勾",
+      "family": "spa_ssr_next",
+      "verdict": "blocked",
+      "confidence": "verified",
+      "reason": "阿里云 WAF 挑战页（11,201 B）；真 robots 禁止带查询参数的搜索页",
+      "verified_at": "2026-11-15",
+      "ttl_days": 90,
+      "evidence": {
+        "requests": 12,
+        "home_bytes": 11201,
+        "robots_bytes": 90,
+        "robots_md5": "C70515A00AA7845BE7DF19CB94F4E3B2",
+        "robots_excerpt": "User-agent: *\nDisallow:/*?*"
+      }
+    },
+    {
+      "id": "jrzp",
+      "match": {"domains": ["jrzp.com"]},
+      "platform": "jrzp 系",
+      "family": "jrzp",
+      "verdict": "blocked",
+      "confidence": "verified",
+      "reason": "列表页渲染后自毁（html<200B 且跳 about:blank）；仅首页 SSR 岗位块可抓",
+      "verified_at": "2026-11-15",
+      "ttl_days": 180,
+      "evidence": {
+        "note": "2026-11-14 render_batch 实测，headless/headed 两条通道均自毁；2026-11-15 城市站首页 86~97 条直链"
+      }
+    },
+    {
+      "id": "zhipin",
+      "match": {"domains": ["zhipin.com"]},
+      "platform": "BOSS直聘",
+      "family": "signed_xhr",
+      "verdict": "blocked",
+      "confidence": "recorded",
+      "reason": "2026-11-10 记录：登录态 + JS 渲染 + 签名参数；未逐条复验",
+      "verified_at": "2026-11-10",
+      "ttl_days": 90,
+      "evidence": {"note": "一句话侦察记录，非实测报告"}
+    },
+    {
+      "id": "zhaopin",
+      "match": {"domains": ["zhaopin.com"]},
+      "platform": "智联招聘",
+      "family": "signed_xhr",
+      "verdict": "blocked",
+      "confidence": "recorded",
+      "reason": "2026-11-10 记录：登录态 + JS 渲染；未逐条复验",
+      "verified_at": "2026-11-10",
+      "ttl_days": 90,
+      "evidence": {"note": "一句话侦察记录，非实测报告"}
+    },
+    {
+      "id": "51job",
+      "match": {"domains": ["51job.com"]},
+      "platform": "前程无忧",
+      "family": "signed_xhr",
+      "verdict": "blocked",
+      "confidence": "recorded",
+      "reason": "2026-11-10 记录：登录态 + JS 渲染；未逐条复验",
+      "verified_at": "2026-11-10",
+      "ttl_days": 90,
+      "evidence": {"note": "一句话侦察记录，非实测报告"}
+    },
+    {
+      "id": "58",
+      "match": {"domains": ["58.com"]},
+      "platform": "58同城（综合分类）",
+      "family": "mixed",
+      "verdict": "blocked",
+      "confidence": "recorded",
+      "reason": "2026-11-10 记录：综合分类信息，岗位频道需登录/JS；未逐条复验",
+      "verified_at": "2026-11-10",
+      "ttl_days": 90,
+      "evidence": {"note": "一句话侦察记录，非实测报告"}
+    },
+    {
+      "id": "beisen",
+      "match": {"domains": ["zhiye.com"]},
+      "platform": "北森 zhiye.com",
+      "family": "beisen",
+      "verdict": "usable",
+      "confidence": "recorded",
+      "reason": "明文接口：registerSystemInfo 取 PortalId → GetJobAdPageList",
+      "verified_at": "2026-11-13",
+      "ttl_days": 180,
+      "evidence": {"note": "tools/beisen_client.py 已有实现；真实企业站未逐一复验"}
+    },
+    {
+      "id": "dayee_old",
+      "match": {"domains": ["hotjob.cn"]},
+      "platform": "大易 hotjob 老版",
+      "family": "dayee_old",
+      "verdict": "usable",
+      "confidence": "recorded",
+      "reason": "明文接口 /wt/{tenant}/web/json/position/list（分页 page，每页 10）",
+      "verified_at": "2026-11-13",
+      "ttl_days": 180,
+      "evidence": {"note": "tools/hotjob_client.py 已有实现；真实租户站未逐一复验"}
+    }
+  ]
+}

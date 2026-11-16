@@ -1,0 +1,40 @@
+{
+  "id": "jrzp",
+  "kind": "channel",
+  "priority": 50,
+  "name": "jrzp 系（列表面 SPA + 反自动化自毁）",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "img.jrzp.com"
+      },
+      {
+        "all": [
+          {
+            "url_regex": "/job\\.shtml$"
+          },
+          {
+            "size_lt": 3000
+          }
+        ]
+      },
+      {
+        "all": [
+          {
+            "url_regex": "/job\\.shtml$"
+          },
+          {
+            "title_contains": "热门职位"
+          }
+        ]
+      }
+    ]
+  },
+  "form": "encrypted_api",
+  "channel": "jrzp",
+  "transport": "none",
+  "capability": "blocked",
+  "est_volume": "仅首页热门块约 100 条；列表页渲染实测被站点自毁",
+  "next_step": "仅首页岗位块可抓（SSR）；列表页 /job.shtml 渲染后页面被站点刷成 about:blank（2026-11-14 实测，headless/headed 两条通道均如此）→ 按红线不做反-反爬，判 blocked",
+  "doc": "docs/jrzp签名接口结论-20261114.md"
+}
