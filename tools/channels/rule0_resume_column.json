@@ -1,0 +1,24 @@
+{
+  "id": "resume_column",
+  "kind": "rule0",
+  "priority": 71,
+  "name": "简历/求职者栏目（永久排除）",
+  "detect": {
+    "any": [
+      {
+        "html_contains": "Person.asp?PerId="
+      },
+      {
+        "html_contains": "Persons/Person.asp"
+      }
+    ]
+  },
+  "status": "blocked",
+  "form": "",
+  "channel": "unknown",
+  "transport": "none",
+  "capability": "blocked",
+  "est_volume": "不抓",
+  "next_step": "简历栏目按 Rule0 永久排除；只抓企业岗位一侧",
+  "doc": "docs/Rule0-不碰清单.md"
+}

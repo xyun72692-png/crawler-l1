@@ -1,0 +1,2204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<script type="text/javascript" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/js/jquery-3.2.1.min.js?vn=c9f5aeeca3ad37bf2aa006139b935f0a" ></script>
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伊利招聘官网
+	    
+	    
+	    
+	</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/corp/yili/css/style.css?vn=f9e57d666b4ec89226158a3083f46902">
+    <link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/corp/yili/css/social.css?vn=62f607839f375b05724ffaf6a8a3c000">
+
+    <script type="text/javascript" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/js/page.js?vn=1b65ddb32b0897fba60d030d8dbdfa4a"></script>
+    <script type="text/javascript" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/js/vue.js?vn=4e2278e4dd5ed68f262e09c73eaa0478"></script>
+
+  
+  
+  <style type="text/css">
+      .page{margin-right: 4px;cursor: pointer;}
+      .sencondOrg{display:none;}
+      .list-table-std tr.hideTR td{
+          display: table-cell!important;
+          font-size:14px;
+      }
+      .content-layout-1{
+          font-size:14px;
+      }
+  </style>
+
+</head>
+
+<body id="postListBody">
+
+    
+    
+    
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/common/default/components/layui/css/modules/layer/default/layer.css?vn=97f6b582afb7a8df248f270c64503f34">
+<link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/corp/yili/css/popup.css?vn=2172af3f8176a4e3f3d9ea3f7ed70108">
+<link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/corp/yili/css/common.css?vn=282743c06cd52c844e71192f7e0b5238">
+<link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/corp/yili/css/nav.css?vn=51ee5afc5f5025209bac2d8c92985a4a">
+<link rel="stylesheet" type="text/css" href="https://hztp.hotjob.cn/wt/component1000/corp/yili/css/footer.css?vn=cc73b3bea4bfd95bd64620d2d1330836">
+
+<script type="text/javascript" src="https://hztp.hotjob.cn/wt/component1000/common/default/components/layui/layui.js?vn=b860b310e9b592cd1dbc4fb5d37b09b7"></script>
+<script type="text/javascript" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/js/popup.js?vn=d122ebf58992c77b4abd4466cc2ddb73" ></script>
+
+<script type="text/javascript" src="https://hztp.hotjob.cn/wt/v9/static/javascript/crypto/crypto-js.js?vn=af87b6673fb6087b22fb6f6e2303549b" ></script>
+<script type="text/javascript" src="https://hztp.hotjob.cn/wt/javascript/web/common.js?vn=5cb48929da7928308c366c2194c2feb5"></script>
+
+<style type="text/css">
+    .layui-layer .layui-layer-title{height: 62px;}
+    .demoClass .layui-layer-title{padding: 0 20px 0 20px;height: 50px; border-bottom: 1px solid #eee;background-color: #F8F8F8;}
+    .cursor{cursor:pointer;}
+</style>
+
+<script type="text/javascript">
+
+function alertLayer(retMsg){
+    layer.alert(retMsg, {
+          skin: 'demoClass' //样式类名
+          ,closeBtn: 0
+          ,offset:'35%'
+    });
+}
+
+function  loadLayer(){
+    //0代表加载的风格，支持0-2
+    var index = layer.load(0, {shade:[0.3,'#000']});
+    
+    //此处默认30秒关闭
+    setTimeout(function(){
+      layer.closeAll('loading');
+    }, 30000);
+}
+
+layui.use('layer', function() {
+    
+    var $ = layui.jquery,
+        layer = layui.layer;
+    
+    $("#loginShow").on("click", loginShow);
+    $("#registerShow").on("click", registerShow);
+    $("#findPassShow").on("click", findPassShow);
+});
+
+function encrypt(str) {
+    var key = CryptoJS.enc.Utf8.parse("5552953937814338");
+    var encrypted = '';
+
+    var srcs = CryptoJS.enc.Utf8.parse(str);
+    encrypted = CryptoJS.AES.encrypt(srcs, key, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+
+    return encrypted.ciphertext.toString();
+}
+
+function logOut(){
+    var logoutUrl = "/wt/yili/web/templet1000/index/corploginOutyili!logoutUser?operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fe19e95956f079298228bc3432419dbc47219a49964979562e641ad1bb505d8b67c62f3ce8a8fa925bc82f85421a1da5ca26e909eefefcffac";
+    window.location.href = logoutUrl;
+}
+
+function backToIndex(){
+    var url = "/wt/yili/web/index/CompyiliPageindex";
+    window.location.href = url;
+}
+
+</script>
+
+<div id="nav">
+        <div class="nav mc-bbc">
+            <div class="nav-bar" style="position: relative">
+                <div class="logo" onclick="backToIndex();">
+                    <img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/logo.jpeg">
+                </div>
+                
+	                <div class="nav-main">
+	                    <!--主页时使用此模板-->
+	                    <ul class="nav-main-main">
+	                        <li>
+	                            <a href="/wt/yili/web/index/CompyiliPageindex"  >首页</a>
+	                        </li>
+	                        <li>
+	                            <a href="/wt/yili/web/index/CompyiliPageindex_campus" class="active" >校园招聘</a>
+		                        
+	                        </li>
+	                        <li>
+	                            <a href="/wt/yili/web/index/CompyiliPageindex_social"  >社会招聘</a>
+	                        </li>
+                            
+	                        
+	                            
+	                        
+	                        
+	                    </ul>
+	                </div>
+                
+                <div class="search1" id="search" onclick="location.href='/wt/yili/web/index/CompyiliPageindex_allSearch'"  >
+                    <div class="search-img"><img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/searchtop.png" width="23" height="23"></div>
+                    <input class="search-result  bWhite searchAllPost" type="text" placeholder="搜索职位">
+                </div>
+
+                
+	                <div class="login" id="loginShow">
+	                    <span class=" mc-bc mc-c">登录/注册</span>
+	                </div>
+	            
+                
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- 公共弹窗. -->
+    <div id="login" style="display: none;">
+        <div class="login-main">
+            <div class="login-logo">
+                <img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/logo.jpeg" draggable="false">
+            </div>
+            <div class="login-page">
+                <div class="passLogin img-1">
+                    <input class="userName" type="text" placeholder="请输入您的用户名" />
+                    <i class="login-hook1"></i>
+                    <input class="userPass" type="password" placeholder="请输入密码" />
+                    <span class="errorPass">密码错误</span>
+                    <button class="button button--winona cursor" data-text="登录" onclick="gotoLogin();">
+                        <span>登录</span>
+                    </button>
+                    <div class="login-foot">
+                        <a class="left forgetPass sc-c">忘记密码?</a>
+                        <a class="right mc-c">去注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" class="submitUserId" value="b58fc4726692731a59d0341e86b8ccf1c1d8b860f8be56c6aa30dba5ab12cd269abe93533136696b" />
+    </div>
+    
+    <div id="register" style="display: none;">
+        <div class="login-main">
+            <div class="login-logo">
+                <img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/logo.jpeg" draggable="false">
+            </div>
+            <div class="register">
+                <input class="registerEmail" type="text" placeholder="请输入邮箱（可用于登录和找回密码）" />
+                <span class="noFindEmail"></span>
+                <i class="login-hook2"></i>
+                <i class="login-hook2"></i>
+                <input class="userPass userPassword1" type="password" placeholder="8-20位密码，字母/数字/符号至少2种" />
+                <span class="userPassSet"></span>
+                <i class="login-hook2"></i>
+                <input class="userPass userPassword2" type="password" placeholder="请确认密码" />
+                <span class="userPassSet2"></span>
+                <i class="login-hook2"></i>
+                <input class="captchaInput" type="text" placeholder="请输入验证码" />
+                <span class="captchaImg cursor" onclick="javascript:genNewCode_regist();">
+                    <img class="validateImg" id="validateImg_pwd" align="middle" 
+                         src="/wt/yili/web/index/webUserLogin!genValidateCodeNew?validateCodeKey=regist&code2=&operational=9534c4f22dc4262736c3bf2f87dd883e0d0c19e4f262b5d131918495257e367c9f858cc2abb2eeb5479497393154bc5794b6880f7ce54e8d8a304a56541c674f313f6d0019d4089a9abf8a1265071f9e34dad93f6bb6801c233f3f12a7fce3d01e095501133be129" />
+                </span>
+                <span class="errorCode"></span>
+                <button class="button button--winona cursor" data-text="确定" onclick="validateRegisterForm();">
+                    <span>确定</span>
+                </button>
+                <div class="login-foot">
+                    <a class="right mc-c">想起来了，去登录</a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" class="submitUserId" value="b58fc4726692731a59d0341e86b8ccf1c1d8b860f8be56c6aa30dba5ab12cd269abe93533136696b"/>
+    </div>
+    
+    <div id="registerSuccess" style="display: none;">
+        <div class="login-main registerSuccess">
+            <div class="login-logo">
+                
+            </div>
+            <div style="width: 124px;height: 124px;border-radius: 50%;margin: 20px auto;background-color: #ecf5fd;">
+                <img style="margin-top: 22px" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/zhucechenggon.png" />
+            </div>
+
+            <p class="setNewPass">注册成功！</p>
+            <p class="registerEmail">lishahs@dayee.com欢迎您~</p>
+            <span class="changePassSpan">3s后弹窗关闭，进入个人中心</span>
+        </div>
+    </div>
+    
+    <div id="findPass" style="display: none;">
+        <div class="login-main">
+            <div class="login-logo" >
+                <img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/logo.jpeg" draggable="false">
+            </div>
+            <div class="findPass">
+                <input class="userEmail" type="text" placeholder="请输入邮箱账号" />
+                <span class="noFindEmail">请确认邮箱</span>
+                <i class="login-hook2"></i>
+                <input class="userInput" type="text" placeholder="请输验证码" />
+                <span class="userErrorCode" style="top: 182px; left: 190px;">验证码错误</span>
+                <span class="captchaImg cursor" onclick="javascript:genNewCode_pwd();" style="height: 44px;">
+                    <img class="validateImg" align="middle" style="height: 44px;" 
+                        src="/wt/yili/web/index/webUserLogin!genValidateCodeNew?validateCodeKey=&code2=&operational=9534c4f22dc4262736c3bf2f87dd883e0d0c19e4f262b5d131918495257e367c9f858cc2abb2eeb5479497393154bc5794b6880f7ce54e8d8a304a56541c674f54506d99176f2dd845779102a868d12bc62f3ce8a8fa925bc82f85421a1da5ca26e909eefefcffac"/>
+                </span>
+                <button class="button button--winona register-btn cursor" data-text="密码重置" onclick="javascript:validateGvCode_pwd();">
+                    <span>密码重置</span>
+                </button>
+                <div class="login-foot">
+                    <a class="rememberPass mc-c">等等，想起来密码了
+                        <i class="goRight"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" class="submitUserId" value="b58fc4726692731a59d0341e86b8ccf1c1d8b860f8be56c6aa30dba5ab12cd269abe93533136696b"/>
+    </div>
+    
+    <div id="findPass2" style="display: none;">
+        <div class="login-main">
+            <div class="login-logo">
+                
+            </div>
+            <img style="margin-top: 20px" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/youxiang.png" />
+            <p class="setNewPass">请前往邮箱设置新密码！</p>
+            <p class="hintEmail">lishahs@dayee.com</p>
+            <span class="changePassSpan">我知道了！</span>
+        </div>
+    </div>
+    
+    <div id="changePass" style="display: none;">
+        <div class="login-main" style="margin-bottom: 50px;">
+            <div class="login-logo" style="font-size: 16px; line-height: 42px;">修改密码</div>
+            <div class="login-page">
+                <div class="findPass img-1">
+                    <input class="oldPass" type="password" placeholder="输入原密码"/>
+                    <span class="errorOldPass" style="top: 114px;left:163px;">8-20位密码，字母/数字/符号至少2种</span><i class="login-hook2"></i>
+                    <input class="userName" type="password" placeholder="输新密码，8位以上" />
+                    <span class="noFindEmail" style="width: auto; top: 186px; left: 169px;">8-20位密码，字母/数字/符号至少2种</span>
+                    <i class="login-hook2"></i>
+                    <input class="userPass" type="password" placeholder="再次输入新密码" />
+                    <span class="errorPass" style="top: 257px; right: 53px;">两次密码不一致</span>
+                    <button class="button button--winona cursor" data-text="确定" onclick="javascript:comfirmChangePassword();">
+                        <span>确定</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" class="submitUserId" value=""/>
+    </div>
+    
+    <div id="changePassSu" style="display: none">
+        <div class="login-main">
+            <img src="https://hztp.hotjob.cn/wt/component1000/corp/cscec3b/images/z-password.png" />
+            <p class="changePassHint">修改密码成功</p>
+            <span class="changePassSpan">3s后自动关闭</span>
+        </div>
+    </div>
+    
+    <div id="goOut" style="display: none">
+        <div class="login-main">
+            <img src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/z-goout.png" />
+            <p class="goOutHint">您是要退出么？</p>
+            <button class="button button--winona button--winonaa register-btn zhuce bgc2b60ab cursor" data-text="确定" onclick="javascript:logOut();">
+                <span>确定</span>
+            </button>
+
+        </div>
+    </div>
+    
+    <!-- 是否取消收藏职位 -->
+    <div id="deleteFavorate" style="display: none">
+        <div class="login-main">
+            <img src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/z-goout.png" alt=""/>
+            <p class="goOutHint">确定取消收藏该职位嘛？</p>
+            <button class="button button--winona button--winonaa register-btn zhuce bgc2b60ab cursor" data-text="确定" onclick="javascript:ajaxDeleteFavorate();">
+                <span>确定</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 需要登录提示框. -->
+    <div id="loginOrNot" style="display: none">
+        <div class="login-main">
+            <img src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/z-goout.png" alt=""/>
+            <p class="goOutHint"></p>
+            <button class="button button--winona button--winonaa register-btn zhuce bgc2b60ab cursor" data-text="去登录" onclick="javascript:loginLayShow();">
+                <span>去登录</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 提示信息. -->
+    <div id="tipsDiv" style="display: none">
+        <div class="login-main" style="cursor: default;">
+            <img src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/z-goout.png" alt=""/>
+            <p class="goOutHint"></p>
+            <span class="changePassSpan cursor">我知道了！</span>
+        </div>
+    </div>
+    
+    <div id="changePassSu" style="display: none">
+        <div class="login-main">
+            <img src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/z-password.png" />
+            <p class="changePassHint">修改密码成功</p>
+            <span class="changePassSpan">3s后自动关闭</span>
+        </div>
+    </div>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+<!-- 登录. -->
+<script type="text/javascript">
+
+function loginLayShow(){
+    layer.closeAll();
+    loginShow();
+}
+
+function gotoLogin(){
+    
+    var userName = $(".layui-layer .userName").val();
+    var userPass = $(".layui-layer .userPass").val();
+    
+    if(userName!="" && userPass!=""){
+        userLogin();
+    }
+}
+
+function userLogin(){
+    
+    var $userName = $(".layui-layer .userName");
+    var $userPass = $(".layui-layer .userPass");
+    var $submitUserId = $(".layui-layer .submitUserId");
+
+    var userName = $userName.val();
+    var passWord = $userPass.val();
+    var submitUserId = $submitUserId.val();
+    var actionName = ""; 
+    
+    var loginUrl = "/wt/yili/web/index/webUserLogin!userLoginForNormal?operational=9534c4f22dc4262736c3bf2f87dd883e0d0c19e4f262b5d131918495257e367c0735da09ef759b0f8e2f22b85bcb9538eec8208b655fb27ec62f3ce8a8fa925bc82f85421a1da5ca26e909eefefcffac";
+    var dataStr = "submitUserId="+submitUserId+"&userName="+encrypt(userName)+"&password="+encrypt(passWord)+"&actionName="+actionName;
+    $.ajax({
+        type:"POST",
+        dataType:"text",
+        url:loginUrl,
+        data:dataStr,
+        success: function(data){
+            
+            var result = eval("("+data+")");
+            var retCode = result.retCode;
+            var retMsg = result.retMsg;
+            
+            if(retCode=="0"){
+                var userCenterUrl = "/wt/yili/web/templet1000/index/corpprimaryResume1000yili!listResume?brandCode=1&operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fe3d4700e5e4d94076a647654762242993a13c636b87308ec4d13fe6fc1a8d269e1a805f8430dff3f8462b6a4fa543111fb89b7df11b02a8e15a7d04cf7b958a4aec342de9ebb2b45a";
+                if(retMsg=="haveApplyInfo"){
+                    userCenterUrl = "/wt/yili/web/templet1000/index/corpshowNewDeliveryRecordyili!listApplyPosition?brandCode=1&operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fe03e48ecb08dc264dcd1f096b06dfb18b7410d7f0fda77def3fa33571bfe44ccad5347f404defa440742d7b33c944528911ae4be4681817ce9a405406d8edab21c62f3ce8a8fa925bc82f85421a1da5ca26e909eefefcffac";
+                }
+                window.location.href = userCenterUrl;
+            }else if(retCode=="2"){
+                alertLayer("您是一个新用户，请先注册再进行登录！");
+            }else if(retCode=="3"){
+                $(".layui-layer .errorName").hide();
+                $(".layui-layer .errorPass").show();//对比密码不正确提示
+            }else{
+                alertLayer(result.retMsg);
+            }
+        }
+    });
+}
+
+</script>
+
+<!-- 注册 -->
+<script type="text/javascript">
+function genNewCode_regist(){ 
+    var url = "/wt/yili/web/index/webValidateCode?operational=9534c4f22dc4262736c3bf2f87dd883e61beadddd02fb8ed85e6b2441579e491feaee91ab028903ac62f3ce8a8fa925bc82f85421a1da5ca26e909eefefcffac";
+    var data = "validateCodeKey=regist";
+    $.ajax({
+        type:"POST",
+        dataType:"text",
+        url:url,
+        data:data,
+        success:flushValidateCode_regist
+    });
+}
+function flushValidateCode_regist(newCode){ 
+    newCode = $.trim(newCode);
+    if(newCode==-1){
+        alertLayer("验证码刷新失败。");
+    }else{
+        var $userInput = $(".layui-layer .validateImg");
+        $userInput[0].src="/wt/yili/web/index/webUserLogin!genValidateCodeNew?validateCodeKey=regist&code1="+newCode+"&code2="+Math.random();
+    }
+}
+
+
+function validateRegisterForm(){
+    
+    var registerEmail = $(".layui-layer .registerEmail").val();
+    var userPassword1 = $(".layui-layer .userPassword1").val();
+    var userPassword2 = $(".layui-layer .userPassword2").val();
+    var captchaInput = $(".layui-layer .captchaInput").val();
+    
+    if(registerEmail=="" || !isEmail(registerEmail)){
+        var errorEmail = $(".layui-layer .noFindEmail");
+        errorEmail.text("请输入正确格式邮箱");
+        errorEmail.show();
+        return false;
+    }
+    
+    /*if(userPassword1=="" || !/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/.test(userPassword1)){
+        var errorPassSet = $(".layui-layer .userPassSet");
+        //errorPassSet.text("请输入验证码");
+        errorPassSet.show();
+        return false;
+    }*/
+
+    if(userPassword1.replace(/(^\s*)|(\s*$)/g, "").length<8 || userPassword1.replace(/(^\s*)|(\s*$)/g, "").length>20 || !hasDigits(userPassword1) || !hasLetter(userPassword1)){
+        var errorPassSet = $(".layui-layer .userPassSet");
+        errorPassSet.show();
+        return false;
+    }
+    
+    if(userPassword2=="" || userPassword2!=userPassword1){
+        var errorPassSet2 = $(".layui-layer .userPassSet2");
+        errorPassSet2.text("两次输入密码不一致");
+        errorPassSet2.show();
+        return false;
+    }
+    
+    if(captchaInput==""){
+        var errorCode = $(".layui-layer .errorCode");
+        errorCode.text("请输入验证码");
+        errorCode.show();
+        return false;
+    }
+    
+    var submitUserId = $(".layui-layer .submitUserId").val();
+    var userTypeValue = 1;
+    var brandCode = 1;
+    
+    $("#registerSuccess .registerEmail").text(registerEmail);
+    
+    var url = "/wt/yili/web/index/userRegisterTokenVCode?operational=9534c4f22dc4262736c3bf2f87dd883ec0dc9156c0c5a817d854e9983dd4204ee7be096e813478eb646a9448ffb34a857905d04cac7d6c015ff69bdff664c3f3";
+    var data = "submitUserId="+submitUserId+"&name="+encrypt(registerEmail)
+                +"&password="+encrypt(userPassword1)+"&email="+encrypt(registerEmail)+"&validateCode="+encrypt(captchaInput)
+                +"&userType="+userTypeValue+"&brandCode="+brandCode;
+    $.ajax({
+        type:"POST",
+        dataType:"text",
+        url:url,
+        data:data,
+        success:registerCallBack
+    });
+}
+
+function registerCallBack(data){
+    
+    var result = eval("("+data+")");
+    var retCode = result.retCode;
+    
+    if(retCode=="0"){
+        layer.closeAll();
+        registerSuccessShow();
+        setTimeout("gotoUserCenter()", 3000);
+    } else {
+        genNewCode_regist();
+        alertLayer(result.retMsg);
+    }
+    
+}
+
+function gotoUserCenter(){
+    
+    var userCenterUrl = "/wt/yili/web/index/CompyiliPageuserCenter?operational=9534c4f22dc4262736c3bf2f87dd883ec1d05d416b91da25161866a6e9d4171523227cd60a1cb37b7598fe974584f9307905d04cac7d6c015ff69bdff664c3f3";
+    window.location.href = userCenterUrl;
+}
+</script>
+
+<!-- 忘记密码. -->
+<script type="text/javascript" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/js/date.js?vn=83fe2f92d7edba82ef8a42fbfd770fa8"></script>
+<script type="text/javascript">
+function genNewCode_pwd(){ 
+    var url = "/wt/yili/web/index/webValidateCode?operational=9534c4f22dc4262736c3bf2f87dd883e61beadddd02fb8ed85e6b2441579e491feaee91ab028903ac62f3ce8a8fa925bc82f85421a1da5ca26e909eefefcffac";
+    var data = "validateCodeKey=";
+    $.ajax({
+        type:"POST",
+        dataType:"text",
+        url:url,
+        data:data,
+        //async: false,//同步请求.
+        success:flushValidateCode_pwd
+    });
+}
+
+function flushValidateCode_pwd(newCode){ 
+    newCode = $.trim(newCode);
+    if(newCode==-1){
+        alert("验证码刷新失败。");
+    }else{
+        var $userInput = $(".layui-layer .validateImg");
+        $userInput[0].src="/wt/yili/web/index/webUserLogin!genValidateCodeNew?code2="+Math.random();
+    }
+}
+function validateGvCode_pwd(){
+    
+    var $userEmail = $(".layui-layer .userEmail");
+    var $validateGvCode = $(".layui-layer .userInput");
+    
+    var inputCode = $validateGvCode.val();
+    var email= $userEmail.val();
+    
+    if($.trim(email)==""){
+        $(".layui-layer .userEmail").text("请输入注册邮箱");
+        $(".layui-layer .noFindEmail").show();
+        return false;
+    }else if (!isEmail(email)) {
+        $(".layui-layer .userEmail").text("邮箱格式不正确");
+        $(".layui-layer .noFindEmail").show();
+        return false;
+    }
+    
+    if(inputCode.replace(/(^\s*)|(\s*$)/g, "")==''){
+        $(".layui-layer .userErrorCode").text("请输入验证码");
+        $(".layui-layer .userErrorCode").show();
+        return false;
+    }
+    
+    $("#findPass2 .hintEmail").text(email);
+    $("#findPass2 .setNewPass").text("请前往邮箱设置新密码！");
+    
+    var recruitType = '';
+    var brandCode = 1;
+    var submitUserId = $(".layui-layer .submitUserId").val();
+    var applyChangePwdDate = new Date().format("YYYY-MM-dd hh:mm:ss");
+    
+    var url = "/wt/yili/web/index/retrievePwdUrlByEmail?operational=9534c4f22dc4262736c3bf2f87dd883ee32a717bc686d61ea69faf6eabb9bde4f0e63ae37af8850334dad93f6bb6801c233f3f12a7fce3d01e095501133be129";
+    var data = "submitUserId="+submitUserId+"&userEmail="+email+"&recruitType="+recruitType
+                +"&applyDate="+applyChangePwdDate+"&validateCodeKey=&inputCode="+inputCode+"&brandCode="+brandCode;
+    $.ajax({
+        type:"POST",
+        dataType:"text",
+        url:url,
+        data:data,
+        success:getPasswordCallBack
+    });
+    
+}
+function getPasswordCallBack(data){
+    data = $.trim(data);
+    if(data=="1"){
+        findPassShow2();
+    }else if(data=="2"){
+        genNewCode_pwd();
+        $(".layui-layer .noFindEmail").text("邮箱不存在");
+        $(".layui-layer .noFindEmail").show();
+     }else if(data == "3"){
+         genNewCode_pwd();
+         $(".layui-layer .userErrorCode").text("验证码错误");
+         $(".layui-layer .userErrorCode").show();
+     }else{
+       genNewCode_pwd();
+       alertLayer(data);
+    } 
+}
+
+</script>
+
+<!-- 修改密码 -->
+<script type="text/javascript" src="/wt/dwr/util.js" ></script>
+<script type="text/javascript" src="/wt/dwr/engine.js" ></script>
+<script type="text/javascript" src="/wt/dwr/interface/groupPageUserChangePasswordAjax.js" ></script>
+<script type="text/javascript">
+    function comfirmChangePassword(){
+        var $button = $(".layui-layer .button");
+        if($button.hasClass("button-unalive")){
+            return false;
+        }else if($button.hasClass("button-alive")){
+            
+            var oldPass = $(".layui-layer .oldPass").val();
+            var newPass = $(".layui-layer .userName").val();
+            var newPassComfirm = $(".layui-layer .userPass").val();
+            
+            if(oldPass==""){
+                $(".errorOldPass").show();
+                return false;
+            }
+            if(newPass=="" || ( newPass!="" && !/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/.test(newPass) )){
+                $(".noFindEmail").show();
+                return false;
+            }
+            if(newPassComfirm=="" || newPassComfirm!=newPass){
+                $(".errorPass").show();
+                return false;
+            }
+            var submitUserId = $(".layui-layer .submitUserId").val();
+            groupPageUserChangePasswordAjax.changePassword(submitUserId,oldPass,newPass,changePasswordCallBack);
+        }
+    }
+    function changePasswordCallBack(data){
+        data = $.trim(data);
+        if(data != "0"){
+          var errorOldPass = $(".layui-layer .errorOldPass");
+          errorOldPass.text(data);
+          errorOldPass.show();
+        }else{
+          layer.closeAll();
+          changePassSuShow();
+        }
+    }
+    
+</script>
+    
+
+    <div class="banner">
+        
+            <img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/inner-banner.png?v=222" width="100%">
+        
+        
+        
+        
+    </div>
+    <div class="container">
+        <div class="moduleName">
+            
+	            <p>RECRUITMENT POSITION</p>
+	            <i></i>
+	            <span>校招职位</span>
+	        
+	        
+            
+	        
+        </div>
+        
+        
+            <div id="summaryList" class="sequence-list" style="width: 1167px;margin-left: -83.5px;">
+                <div class="sequences">
+                    <div class="all-category  " data-code="100001"><div class="menban"><span>集团总部</span></div></div>
+                    <div class="sequence-4  " data-code="100005"><div class="menban"><span>液态奶事业部</span></div></div>
+                    <div class="sequence-5  " data-code="100003"><div class="menban"><span>婴幼儿营养品事业部</span></div></div>
+                    <div class="sequence-3  " data-code="100002"><div class="menban"><span>冷饮事业部</span></div></div>
+                    <div class="sequence-2  " data-code="100004"><div class="menban"><span>酸奶事业部</span></div></div>
+                    <div class="sequence-7  " data-code="105701"><div class="menban"><span>成人营养品事业部</span></div></div>
+                    <div class="sequence-6  " data-code="101302"><div class="menban"><span>奶酪事业部</span></div></div>
+                </div>
+            </div>
+        
+        
+        <div class="main-container">
+            <div class="search">
+                <!-- 招聘类型 -->
+                
+                
+                    <input type="hidden" id="recruitTypeV" value="1" />
+                
+                
+                <!-- 职位类别 -->
+                <select id="positionTypeV" onchange="searchPostByCondition();" autocomplete="off">
+	                <option value="">职位分类</option>
+	                
+                        <option value="0/1227/10002"  >经营管理</option>
+                    
+                        <option value="0/1227/37850532"  >市场</option>
+                    
+                        <option value="0/1227/37850530"  >研发</option>
+                    
+                        <option value="0/1227/100101"  >供应保障</option>
+                    
+                        <option value="0/1227/100102"  >奶源</option>
+                    
+                        <option value="0/1227/100103"  >生产</option>
+                    
+                        <option value="0/1227/37850543"  >设备</option>
+                    
+                        <option value="0/1227/100104"  >供应链</option>
+                    
+                        <option value="0/1227/100105"  >销售</option>
+                    
+                        <option value="0/1227/100106"  >战略</option>
+                    
+                        <option value="0/1227/100107"  >咨询</option>
+                    
+                        <option value="0/1227/100108"  >工程</option>
+                    
+                        <option value="0/1227/100109"  >质量</option>
+                    
+                        <option value="0/1227/100110"  >信息技术</option>
+                    
+                        <option value="0/1227/100111"  >财务金融</option>
+                    
+                        <option value="0/1227/100112"  >风险控制</option>
+                    
+                        <option value="0/1227/100113"  >人力资源</option>
+                    
+                        <option value="0/1227/100114"  >行政</option>
+                    
+                        <option value="0/1227/100115"  >后勤</option>
+                    
+	            </select>
+                
+	            <!-- 机构 -->
+	            <input type="hidden" id="comPartV" value="" />
+                
+	            <select id="firstComPartV" onchange="searchPostByFirstOrg(this);" autocomplete="off">
+	                <option value="">工作单位</option>
+	                
+                        <option index="0" value="100001"  >总部</option>
+                        
+                    
+                        <option index="1" value="100005"  >液态奶事业部</option>
+                        
+                    
+                        <option index="2" value="100003"  >婴幼儿营养品事业部</option>
+                        
+                    
+                        <option index="3" value="100002"  >冷饮事业部</option>
+                        
+                    
+                        <option index="4" value="100004"  >酸奶事业部</option>
+                        
+                    
+                        <option index="5" value="105701"  >成人营养品事业部</option>
+                        
+                    
+                        <option index="6" value="101302"  >奶酪事业部</option>
+                        
+                    
+	            </select>
+                <select id="sencondComPartV" onchange="searchPostBySencondOrg(this);" style="display:none;" autocomplete="off">
+	            </select>
+	            <!-- 工作地点 -->
+	            <select id="workPlaceNameV" onchange="searchPostByCondition();" autocomplete="off">
+	                <option value="">工作地点</option>
+	                
+                        <option value="0/4/7/9"  >北京</option>
+                    
+                        <option value="0/4/10/11"  >上海</option>
+                    
+                        <option value="0/4/12/13"  >天津</option>
+                    
+                        <option value="0/4/14/15"  >重庆</option>
+                    
+                        <option value="0/4/17/19"  >石家庄</option>
+                    
+                        <option value="0/4/17/20"  >唐山</option>
+                    
+                        <option value="0/4/17/22"  >秦皇岛</option>
+                    
+                        <option value="0/4/17/24"  >廊坊</option>
+                    
+                        <option value="0/4/17/26"  >保定</option>
+                    
+                        <option value="0/4/17/29"  >邯郸</option>
+                    
+                        <option value="0/4/17/33"  >邢台</option>
+                    
+                        <option value="0/4/17/36"  >张家口</option>
+                    
+                        <option value="0/4/17/38"  >承德</option>
+                    
+                        <option value="0/4/17/40"  >其它</option>
+                    
+                        <option value="0/4/17/52113682"  >衡水</option>
+                    
+                        <option value="0/4/17/52113683"  >沧州</option>
+                    
+                        <option value="0/4/43/46"  >太原</option>
+                    
+                        <option value="0/4/43/48"  >大同</option>
+                    
+                        <option value="0/4/43/49"  >临汾</option>
+                    
+                        <option value="0/4/43/52"  >运城</option>
+                    
+                        <option value="0/4/43/53"  >其它</option>
+                    
+                        <option value="0/4/43/52113718"  >长治</option>
+                    
+                        <option value="0/4/43/52113719"  >晋城</option>
+                    
+                        <option value="0/4/43/52113720"  >阳泉</option>
+                    
+                        <option value="0/4/43/52113721"  >朔州</option>
+                    
+                        <option value="0/4/43/52113722"  >晋中</option>
+                    
+                        <option value="0/4/43/52113723"  >忻州</option>
+                    
+                        <option value="0/4/43/52113734"  >吕梁</option>
+                    
+                        <option value="0/4/57/67"  >呼和浩特</option>
+                    
+                        <option value="0/4/57/73"  >包头</option>
+                    
+                        <option value="0/4/57/75"  >赤峰</option>
+                    
+                        <option value="0/4/57/76"  >其它</option>
+                    
+                        <option value="0/4/57/52113740"  >通辽</option>
+                    
+                        <option value="0/4/57/52113741"  >鄂尔多斯</option>
+                    
+                        <option value="0/4/57/52113744"  >巴彦淖尔</option>
+                    
+                        <option value="0/4/57/52113795"  >乌海</option>
+                    
+                        <option value="0/4/57/52113798"  >呼伦贝尔</option>
+                    
+                        <option value="0/4/57/52113802"  >乌兰察布</option>
+                    
+                        <option value="0/4/57/52113817"  >兴安盟</option>
+                    
+                        <option value="0/4/57/52113855"  >锡林郭勒盟</option>
+                    
+                        <option value="0/4/57/52113858"  >阿拉善盟</option>
+                    
+                        <option value="0/4/77/78"  >沈阳</option>
+                    
+                        <option value="0/4/77/79"  >大连</option>
+                    
+                        <option value="0/4/77/81"  >鞍山</option>
+                    
+                        <option value="0/4/77/82"  >抚顺</option>
+                    
+                        <option value="0/4/77/83"  >本溪</option>
+                    
+                        <option value="0/4/77/86"  >丹东</option>
+                    
+                        <option value="0/4/77/88"  >锦州</option>
+                    
+                        <option value="0/4/77/90"  >营口</option>
+                    
+                        <option value="0/4/77/93"  >辽阳</option>
+                    
+                        <option value="0/4/77/95"  >铁岭</option>
+                    
+                        <option value="0/4/77/98"  >其它</option>
+                    
+                        <option value="0/4/77/52113878"  >葫芦岛</option>
+                    
+                        <option value="0/4/77/52113879"  >盘锦</option>
+                    
+                        <option value="0/4/77/52113881"  >朝阳</option>
+                    
+                        <option value="0/4/77/52113882"  >阜新</option>
+                    
+                        <option value="0/4/100/102"  >长春</option>
+                    
+                        <option value="0/4/100/104"  >吉林</option>
+                    
+                        <option value="0/4/100/106"  >辽源</option>
+                    
+                        <option value="0/4/100/109"  >通化</option>
+                    
+                        <option value="0/4/100/111"  >其它</option>
+                    
+                        <option value="0/4/100/52113884"  >四平</option>
+                    
+                        <option value="0/4/100/52113885"  >松原</option>
+                    
+                        <option value="0/4/100/52113889"  >白山</option>
+                    
+                        <option value="0/4/100/52113890"  >白城</option>
+                    
+                        <option value="0/4/100/52113894"  >延边朝鲜族自治州</option>
+                    
+                        <option value="0/4/115/117"  >哈尔滨</option>
+                    
+                        <option value="0/4/115/119"  >齐齐哈尔</option>
+                    
+                        <option value="0/4/115/122"  >大庆</option>
+                    
+                        <option value="0/4/115/125"  >伊春</option>
+                    
+                        <option value="0/4/115/128"  >佳木斯</option>
+                    
+                        <option value="0/4/115/130"  >牡丹江</option>
+                    
+                        <option value="0/4/115/131"  >绥化</option>
+                    
+                        <option value="0/4/115/133"  >其它</option>
+                    
+                        <option value="0/4/115/52113907"  >鸡西</option>
+                    
+                        <option value="0/4/115/52113910"  >鹤岗</option>
+                    
+                        <option value="0/4/115/52113911"  >双鸭山</option>
+                    
+                        <option value="0/4/115/52113916"  >黑河</option>
+                    
+                        <option value="0/4/115/52113920"  >七台河</option>
+                    
+                        <option value="0/4/115/52113926"  >大兴安岭地区</option>
+                    
+                        <option value="0/4/135/138"  >南京</option>
+                    
+                        <option value="0/4/135/139"  >无锡</option>
+                    
+                        <option value="0/4/135/146"  >徐州</option>
+                    
+                        <option value="0/4/135/148"  >常州</option>
+                    
+                        <option value="0/4/135/153"  >苏州</option>
+                    
+                        <option value="0/4/135/164"  >南通</option>
+                    
+                        <option value="0/4/135/173"  >连云港</option>
+                    
+                        <option value="0/4/135/174"  >淮安</option>
+                    
+                        <option value="0/4/135/180"  >盐城</option>
+                    
+                        <option value="0/4/135/185"  >扬州</option>
+                    
+                        <option value="0/4/135/189"  >泰州</option>
+                    
+                        <option value="0/4/135/192"  >镇江</option>
+                    
+                        <option value="0/4/135/200"  >其它</option>
+                    
+                        <option value="0/4/135/52140129"  >宿迁</option>
+                    
+                        <option value="0/4/204/207"  >杭州</option>
+                    
+                        <option value="0/4/204/210"  >宁波</option>
+                    
+                        <option value="0/4/204/213"  >温州</option>
+                    
+                        <option value="0/4/204/215"  >嘉兴</option>
+                    
+                        <option value="0/4/204/218"  >湖州</option>
+                    
+                        <option value="0/4/204/220"  >绍兴</option>
+                    
+                        <option value="0/4/204/222"  >金华</option>
+                    
+                        <option value="0/4/204/224"  >衢州</option>
+                    
+                        <option value="0/4/204/225"  >舟山</option>
+                    
+                        <option value="0/4/204/226"  >丽水</option>
+                    
+                        <option value="0/4/204/227"  >台州</option>
+                    
+                        <option value="0/4/204/228"  >其它</option>
+                    
+                        <option value="0/4/229/230"  >合肥</option>
+                    
+                        <option value="0/4/229/231"  >芜湖</option>
+                    
+                        <option value="0/4/229/232"  >蚌埠</option>
+                    
+                        <option value="0/4/229/234"  >淮南</option>
+                    
+                        <option value="0/4/229/236"  >马鞍山</option>
+                    
+                        <option value="0/4/229/237"  >淮北</option>
+                    
+                        <option value="0/4/229/238"  >铜陵</option>
+                    
+                        <option value="0/4/229/239"  >安庆</option>
+                    
+                        <option value="0/4/229/240"  >黄山</option>
+                    
+                        <option value="0/4/229/241"  >阜阳</option>
+                    
+                        <option value="0/4/229/243"  >滁州</option>
+                    
+                        <option value="0/4/229/244"  >六安</option>
+                    
+                        <option value="0/4/229/247"  >其它</option>
+                    
+                        <option value="0/4/229/52140213"  >宣城</option>
+                    
+                        <option value="0/4/229/52140253"  >池州</option>
+                    
+                        <option value="0/4/229/52140254"  >宿州</option>
+                    
+                        <option value="0/4/229/52140255"  >亳州</option>
+                    
+                        <option value="0/4/248/249"  >福州</option>
+                    
+                        <option value="0/4/248/250"  >厦门</option>
+                    
+                        <option value="0/4/248/251"  >莆田</option>
+                    
+                        <option value="0/4/248/252"  >三明</option>
+                    
+                        <option value="0/4/248/253"  >泉州</option>
+                    
+                        <option value="0/4/248/260"  >漳州</option>
+                    
+                        <option value="0/4/248/261"  >其它</option>
+                    
+                        <option value="0/4/248/52140290"  >南平</option>
+                    
+                        <option value="0/4/248/52140291"  >宁德</option>
+                    
+                        <option value="0/4/248/52140292"  >龙岩</option>
+                    
+                        <option value="0/4/298/299"  >南昌</option>
+                    
+                        <option value="0/4/298/300"  >九江</option>
+                    
+                        <option value="0/4/298/301"  >其它</option>
+                    
+                        <option value="0/4/298/52140296"  >景德镇</option>
+                    
+                        <option value="0/4/298/52140307"  >萍乡</option>
+                    
+                        <option value="0/4/298/52140319"  >新余</option>
+                    
+                        <option value="0/4/298/52140325"  >鹰潭</option>
+                    
+                        <option value="0/4/298/52140326"  >赣州</option>
+                    
+                        <option value="0/4/298/52140333"  >吉安</option>
+                    
+                        <option value="0/4/298/52140339"  >宜春</option>
+                    
+                        <option value="0/4/298/52140346"  >抚州</option>
+                    
+                        <option value="0/4/298/52140347"  >上饶</option>
+                    
+                        <option value="0/4/302/303"  >济南</option>
+                    
+                        <option value="0/4/302/304"  >青岛</option>
+                    
+                        <option value="0/4/302/305"  >淄博</option>
+                    
+                        <option value="0/4/302/306"  >枣庄</option>
+                    
+                        <option value="0/4/302/307"  >东营</option>
+                    
+                        <option value="0/4/302/308"  >烟台</option>
+                    
+                        <option value="0/4/302/309"  >潍坊</option>
+                    
+                        <option value="0/4/302/310"  >济宁</option>
+                    
+                        <option value="0/4/302/311"  >泰安</option>
+                    
+                        <option value="0/4/302/312"  >威海</option>
+                    
+                        <option value="0/4/302/314"  >日照</option>
+                    
+                        <option value="0/4/302/315"  >聊城</option>
+                    
+                        <option value="0/4/302/316"  >临沂</option>
+                    
+                        <option value="0/4/302/317"  >菏泽</option>
+                    
+                        <option value="0/4/302/318"  >其它</option>
+                    
+                        <option value="0/4/302/52140365"  >德州</option>
+                    
+                        <option value="0/4/302/52140366"  >滨州</option>
+                    
+                        <option value="0/4/302/52140368"  >莱芜</option>
+                    
+                        <option value="0/4/331/333"  >郑州</option>
+                    
+                        <option value="0/4/331/335"  >开封</option>
+                    
+                        <option value="0/4/331/338"  >洛阳</option>
+                    
+                        <option value="0/4/331/340"  >其它</option>
+                    
+                        <option value="0/4/331/52140470"  >焦作</option>
+                    
+                        <option value="0/4/331/52140471"  >南阳</option>
+                    
+                        <option value="0/4/331/52140490"  >新乡</option>
+                    
+                        <option value="0/4/331/52140503"  >周口</option>
+                    
+                        <option value="0/4/331/52140506"  >安阳</option>
+                    
+                        <option value="0/4/331/52140532"  >平顶山</option>
+                    
+                        <option value="0/4/331/52140533"  >许昌</option>
+                    
+                        <option value="0/4/331/52140546"  >信阳</option>
+                    
+                        <option value="0/4/331/52140547"  >商丘</option>
+                    
+                        <option value="0/4/331/52140549"  >驻马店</option>
+                    
+                        <option value="0/4/331/52140552"  >漯河</option>
+                    
+                        <option value="0/4/331/52140561"  >濮阳</option>
+                    
+                        <option value="0/4/331/52140562"  >鹤壁</option>
+                    
+                        <option value="0/4/331/52140578"  >三门峡</option>
+                    
+                        <option value="0/4/331/52140580"  >济源</option>
+                    
+                        <option value="0/4/343/346"  >武汉</option>
+                    
+                        <option value="0/4/343/348"  >黄石</option>
+                    
+                        <option value="0/4/343/351"  >十堰</option>
+                    
+                        <option value="0/4/343/353"  >荆州</option>
+                    
+                        <option value="0/4/343/355"  >宜昌</option>
+                    
+                        <option value="0/4/343/357"  >襄阳</option>
+                    
+                        <option value="0/4/343/359"  >鄂州</option>
+                    
+                        <option value="0/4/343/361"  >荆门</option>
+                    
+                        <option value="0/4/343/364"  >黄冈</option>
+                    
+                        <option value="0/4/343/367"  >孝感</option>
+                    
+                        <option value="0/4/343/369"  >咸宁</option>
+                    
+                        <option value="0/4/343/371"  >其它</option>
+                    
+                        <option value="0/4/343/52527"  >神农架林区</option>
+                    
+                        <option value="0/4/343/52140601"  >恩施土家族苗族自治州</option>
+                    
+                        <option value="0/4/343/52140602"  >随州</option>
+                    
+                        <option value="0/4/343/52140603"  >仙桃</option>
+                    
+                        <option value="0/4/343/52140604"  >潜江</option>
+                    
+                        <option value="0/4/343/52140605"  >天门</option>
+                    
+                        <option value="0/4/372/374"  >长沙</option>
+                    
+                        <option value="0/4/372/376"  >株洲</option>
+                    
+                        <option value="0/4/372/378"  >湘潭</option>
+                    
+                        <option value="0/4/372/381"  >衡阳</option>
+                    
+                        <option value="0/4/372/383"  >邵阳</option>
+                    
+                        <option value="0/4/372/386"  >岳阳</option>
+                    
+                        <option value="0/4/372/388"  >常德</option>
+                    
+                        <option value="0/4/372/390"  >郴州</option>
+                    
+                        <option value="0/4/372/392"  >怀化</option>
+                    
+                        <option value="0/4/372/395"  >其它</option>
+                    
+                        <option value="0/4/372/52633"  >湘西土家族苗族自治州</option>
+                    
+                        <option value="0/4/372/52140618"  >益阳</option>
+                    
+                        <option value="0/4/372/52140619"  >娄底</option>
+                    
+                        <option value="0/4/372/52140620"  >永州</option>
+                    
+                        <option value="0/4/372/52140626"  >张家界</option>
+                    
+                        <option value="0/4/396/397"  >广州</option>
+                    
+                        <option value="0/4/396/398"  >韶关</option>
+                    
+                        <option value="0/4/396/399"  >深圳</option>
+                    
+                        <option value="0/4/396/401"  >珠海</option>
+                    
+                        <option value="0/4/396/403"  >汕头</option>
+                    
+                        <option value="0/4/396/406"  >潮州</option>
+                    
+                        <option value="0/4/396/411"  >中山</option>
+                    
+                        <option value="0/4/396/412"  >江门</option>
+                    
+                        <option value="0/4/396/415"  >湛江</option>
+                    
+                        <option value="0/4/396/417"  >茂名</option>
+                    
+                        <option value="0/4/396/419"  >肇庆</option>
+                    
+                        <option value="0/4/396/423"  >惠州</option>
+                    
+                        <option value="0/4/396/429"  >汕尾</option>
+                    
+                        <option value="0/4/396/430"  >河源</option>
+                    
+                        <option value="0/4/396/431"  >清远</option>
+                    
+                        <option value="0/4/396/432"  >东莞</option>
+                    
+                        <option value="0/4/396/434"  >其它</option>
+                    
+                        <option value="0/4/396/52140684"  >佛山</option>
+                    
+                        <option value="0/4/396/52140706"  >揭阳</option>
+                    
+                        <option value="0/4/396/52140711"  >梅州</option>
+                    
+                        <option value="0/4/396/52140713"  >阳江</option>
+                    
+                        <option value="0/4/396/52140714"  >云浮</option>
+                    
+                        <option value="0/4/439/440"  >南宁</option>
+                    
+                        <option value="0/4/439/441"  >柳州</option>
+                    
+                        <option value="0/4/439/442"  >桂林</option>
+                    
+                        <option value="0/4/439/443"  >北海</option>
+                    
+                        <option value="0/4/439/444"  >玉林</option>
+                    
+                        <option value="0/4/439/447"  >其它</option>
+                    
+                        <option value="0/4/439/52140715"  >梧州</option>
+                    
+                        <option value="0/4/439/52140716"  >防城港</option>
+                    
+                        <option value="0/4/439/52140717"  >钦州</option>
+                    
+                        <option value="0/4/439/52140718"  >贵港</option>
+                    
+                        <option value="0/4/439/52140719"  >百色</option>
+                    
+                        <option value="0/4/439/52140721"  >河池</option>
+                    
+                        <option value="0/4/439/52140722"  >来宾</option>
+                    
+                        <option value="0/4/439/52140724"  >崇左</option>
+                    
+                        <option value="0/4/439/52140725"  >贺州</option>
+                    
+                        <option value="0/4/450/452"  >海口</option>
+                    
+                        <option value="0/4/450/453"  >三亚</option>
+                    
+                        <option value="0/4/450/50673"  >文昌</option>
+                    
+                        <option value="0/4/450/50674"  >琼海</option>
+                    
+                        <option value="0/4/450/50675"  >万宁</option>
+                    
+                        <option value="0/4/450/50676"  >东方</option>
+                    
+                        <option value="0/4/450/50677"  >五指山</option>
+                    
+                        <option value="0/4/450/50678"  >定安县</option>
+                    
+                        <option value="0/4/450/50679"  >屯昌县</option>
+                    
+                        <option value="0/4/450/50680"  >澄迈县</option>
+                    
+                        <option value="0/4/450/50681"  >临高县</option>
+                    
+                        <option value="0/4/450/50682"  >琼中黎族苗族自治县</option>
+                    
+                        <option value="0/4/450/50683"  >保亭黎族苗族自治县</option>
+                    
+                        <option value="0/4/450/50684"  >白沙黎族自治县</option>
+                    
+                        <option value="0/4/450/50685"  >昌江黎族自治县</option>
+                    
+                        <option value="0/4/450/50686"  >乐东黎族自治县</option>
+                    
+                        <option value="0/4/450/50687"  >陵水黎族自治县</option>
+                    
+                        <option value="0/4/450/50688"  >三沙</option>
+                    
+                        <option value="0/4/450/50689"  >儋州</option>
+                    
+                        <option value="0/4/450/52140955"  >其他</option>
+                    
+                        <option value="0/4/455/456"  >成都</option>
+                    
+                        <option value="0/4/455/459"  >自贡</option>
+                    
+                        <option value="0/4/455/460"  >攀枝花</option>
+                    
+                        <option value="0/4/455/462"  >泸州</option>
+                    
+                        <option value="0/4/455/463"  >德阳</option>
+                    
+                        <option value="0/4/455/464"  >绵阳</option>
+                    
+                        <option value="0/4/455/465"  >内江</option>
+                    
+                        <option value="0/4/455/466"  >乐山</option>
+                    
+                        <option value="0/4/455/467"  >其它</option>
+                    
+                        <option value="0/4/455/52140989"  >宜宾</option>
+                    
+                        <option value="0/4/455/52140990"  >南充</option>
+                    
+                        <option value="0/4/455/52140991"  >眉山</option>
+                    
+                        <option value="0/4/455/52141006"  >广安</option>
+                    
+                        <option value="0/4/455/52141036"  >资阳</option>
+                    
+                        <option value="0/4/455/52141037"  >遂宁</option>
+                    
+                        <option value="0/4/455/52141038"  >广元</option>
+                    
+                        <option value="0/4/455/52141039"  >达州</option>
+                    
+                        <option value="0/4/455/52141040"  >雅安</option>
+                    
+                        <option value="0/4/455/52141058"  >巴中</option>
+                    
+                        <option value="0/4/455/52141059"  >甘孜藏族自治州</option>
+                    
+                        <option value="0/4/455/52141060"  >阿坝藏族羌族自治州</option>
+                    
+                        <option value="0/4/455/52141061"  >凉山彝族自治州</option>
+                    
+                        <option value="0/4/468/469"  >贵阳</option>
+                    
+                        <option value="0/4/468/470"  >遵义</option>
+                    
+                        <option value="0/4/468/471"  >其它</option>
+                    
+                        <option value="0/4/468/52141062"  >六盘水</option>
+                    
+                        <option value="0/4/468/52141063"  >安顺</option>
+                    
+                        <option value="0/4/468/52141064"  >铜仁</option>
+                    
+                        <option value="0/4/468/52141065"  >毕节</option>
+                    
+                        <option value="0/4/468/52141066"  >黔西南布依族苗族自治州</option>
+                    
+                        <option value="0/4/468/52141067"  >黔东南苗族侗族自治州</option>
+                    
+                        <option value="0/4/468/52141068"  >黔南布依族苗族自治州</option>
+                    
+                        <option value="0/4/473/475"  >昆明</option>
+                    
+                        <option value="0/4/473/476"  >玉溪</option>
+                    
+                        <option value="0/4/473/478"  >大理白族自治州</option>
+                    
+                        <option value="0/4/473/480"  >丽江</option>
+                    
+                        <option value="0/4/473/481"  >其它</option>
+                    
+                        <option value="0/4/473/52141076"  >曲靖</option>
+                    
+                        <option value="0/4/473/52141093"  >红河哈尼族彝族自治州</option>
+                    
+                        <option value="0/4/473/52141098"  >普洱</option>
+                    
+                        <option value="0/4/473/52141099"  >保山</option>
+                    
+                        <option value="0/4/473/52141146"  >昭通</option>
+                    
+                        <option value="0/4/473/52141147"  >文山壮族苗族自治州</option>
+                    
+                        <option value="0/4/473/52141180"  >西双版纳傣族自治州</option>
+                    
+                        <option value="0/4/473/52141181"  >德宏傣族景颇族自治州</option>
+                    
+                        <option value="0/4/473/52141183"  >楚雄彝族自治州</option>
+                    
+                        <option value="0/4/473/52141184"  >临沧</option>
+                    
+                        <option value="0/4/473/52141185"  >怒江傈僳族自治州</option>
+                    
+                        <option value="0/4/473/52141186"  >迪庆藏族自治州</option>
+                    
+                        <option value="0/4/482/483"  >拉萨</option>
+                    
+                        <option value="0/4/482/484"  >日喀则</option>
+                    
+                        <option value="0/4/482/488"  >其它</option>
+                    
+                        <option value="0/4/482/52141188"  >林芝</option>
+                    
+                        <option value="0/4/482/52141199"  >山南</option>
+                    
+                        <option value="0/4/482/52141200"  >昌都</option>
+                    
+                        <option value="0/4/482/52141201"  >那曲</option>
+                    
+                        <option value="0/4/482/52141440"  >阿里地区</option>
+                    
+                        <option value="0/4/489/491"  >西安</option>
+                    
+                        <option value="0/4/489/494"  >铜川</option>
+                    
+                        <option value="0/4/489/497"  >宝鸡</option>
+                    
+                        <option value="0/4/489/510"  >咸阳</option>
+                    
+                        <option value="0/4/489/511"  >延安</option>
+                    
+                        <option value="0/4/489/512"  >其它</option>
+                    
+                        <option value="0/4/489/52141447"  >渭南</option>
+                    
+                        <option value="0/4/489/52141449"  >榆林</option>
+                    
+                        <option value="0/4/489/52141450"  >汉中</option>
+                    
+                        <option value="0/4/489/52141452"  >安康</option>
+                    
+                        <option value="0/4/489/52141453"  >商洛</option>
+                    
+                        <option value="0/4/513/514"  >兰州</option>
+                    
+                        <option value="0/4/513/515"  >嘉峪关</option>
+                    
+                        <option value="0/4/513/516"  >酒泉</option>
+                    
+                        <option value="0/4/513/548"  >金昌</option>
+                    
+                        <option value="0/4/513/549"  >其它</option>
+                    
+                        <option value="0/4/513/52141466"  >天水</option>
+                    
+                        <option value="0/4/513/52141468"  >武威</option>
+                    
+                        <option value="0/4/513/52141469"  >白银</option>
+                    
+                        <option value="0/4/513/52141482"  >张掖</option>
+                    
+                        <option value="0/4/513/52141484"  >平凉</option>
+                    
+                        <option value="0/4/513/52141485"  >定西</option>
+                    
+                        <option value="0/4/513/52141486"  >陇南</option>
+                    
+                        <option value="0/4/513/52141487"  >庆阳</option>
+                    
+                        <option value="0/4/513/52141488"  >临夏回族自治州</option>
+                    
+                        <option value="0/4/513/52141489"  >甘南藏族自治州</option>
+                    
+                        <option value="0/4/553/554"  >西宁</option>
+                    
+                        <option value="0/4/553/556"  >其它</option>
+                    
+                        <option value="0/4/553/53436"  >海东</option>
+                    
+                        <option value="0/4/553/52141580"  >海西蒙古族藏族自治州</option>
+                    
+                        <option value="0/4/553/52141617"  >海南藏族自治州</option>
+                    
+                        <option value="0/4/553/52141630"  >海北藏族自治州</option>
+                    
+                        <option value="0/4/553/52141631"  >果洛藏族自治州</option>
+                    
+                        <option value="0/4/553/52141632"  >黄南藏族自治州</option>
+                    
+                        <option value="0/4/553/52141634"  >玉树藏族自治州</option>
+                    
+                        <option value="0/4/560/561"  >银川</option>
+                    
+                        <option value="0/4/560/562"  >其它</option>
+                    
+                        <option value="0/4/560/52141647"  >吴忠</option>
+                    
+                        <option value="0/4/560/52141658"  >中卫</option>
+                    
+                        <option value="0/4/560/52141660"  >石嘴山</option>
+                    
+                        <option value="0/4/560/52141661"  >固原</option>
+                    
+                        <option value="0/4/574/575"  >乌鲁木齐</option>
+                    
+                        <option value="0/4/574/576"  >克拉玛依</option>
+                    
+                        <option value="0/4/574/577"  >喀什地区</option>
+                    
+                        <option value="0/4/574/581"  >伊犁哈萨克自治州</option>
+                    
+                        <option value="0/4/574/582"  >石河子</option>
+                    
+                        <option value="0/4/574/594"  >其它</option>
+                    
+                        <option value="0/4/574/50757"  >图木舒克</option>
+                    
+                        <option value="0/4/574/53499"  >昌吉回族自治州</option>
+                    
+                        <option value="0/4/574/53507"  >博尔塔拉蒙古自治州</option>
+                    
+                        <option value="0/4/574/53512"  >巴音郭楞蒙古自治州</option>
+                    
+                        <option value="0/4/574/53531"  >克孜勒苏柯尔克孜自治州</option>
+                    
+                        <option value="0/4/574/53581"  >北屯</option>
+                    
+                        <option value="0/4/574/53582"  >铁门关</option>
+                    
+                        <option value="0/4/574/53583"  >双河</option>
+                    
+                        <option value="0/4/574/53584"  >可克达拉</option>
+                    
+                        <option value="0/4/574/53585"  >昆玉</option>
+                    
+                        <option value="0/4/574/52147095"  >阿克苏地区</option>
+                    
+                        <option value="0/4/574/52147096"  >哈密</option>
+                    
+                        <option value="0/4/574/52147097"  >阿拉尔</option>
+                    
+                        <option value="0/4/574/52147098"  >五家渠</option>
+                    
+                        <option value="0/4/574/52147101"  >阿勒泰地区</option>
+                    
+                        <option value="0/4/574/52147102"  >吐鲁番</option>
+                    
+                        <option value="0/4/574/52147103"  >塔城地区</option>
+                    
+                        <option value="0/4/574/52147104"  >和田地区</option>
+                    
+                        <option value="0/4/595/538135297"  >香港</option>
+                    
+                        <option value="0/4/596/538137608"  >澳门</option>
+                    
+                        <option value="0/4/597/538139726"  >台湾</option>
+                    
+                        <option value="0/4/23000/23001"  >海外</option>
+                    
+	            </select>
+                
+	            
+	                <div class="searchDiv">
+	                    <input type="text" id="keyWordV" placeholder="请输入职位关键字" value="" autocomplete="off">
+	                    <div class="searchbutton cursor" onclick="searchPostByCondition();">搜索</div>
+	                </div>
+	            
+	            
+            </div>
+            
+            <div>
+                <table class="list-table-std" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="20"></th>
+                            <th>职位名称</th>
+                            <th>职位类别</th>
+                            <th>学历要求</th>
+                            <th>工作单位</th>
+                            <th>工作地点</th>
+                            <th>发布时间</th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in positionList" class="clickHot" data_postid="{{item.postId}}" data_recruittype="{{item.recruitType}}" onclick="javascript:showPostDetail(this);">
+                            <td v-if="item.importPost==1">
+                                <img alt="" src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/hot.png">
+                            </td>
+                            <td v-if="item.importPost==null || item.importPost==0">
+                            </td>
+                            <td class="t-td" style="max-width: 160px;" title="{{item.postName}}">{{item.postName}}</td>
+                            <td class="t-td" style="max-width: 120px;" title="{{item.postType}}">{{item.postType}}</td>
+                            <td class="t-td" style="max-width: 120px;" title="{{item.education}}">{{item.education}}</td>
+                            <td class="t-td" style="max-width: 120px;" title="{{item.orgName}}">{{item.orgName}}</td>
+                            <td class="t-td" style="max-width: 120px;" title="{{item.workPlace}}">{{item.workPlace}}</td>
+                            <td style="white-space: nowrap">{{item.publishDate}}</td>
+                            
+                            <td><span class="arrow-grey hand"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 分页 start -->
+            <div class="flip pagenation">
+                <a href="javascript:void(0);" onclick="changePage(1);">首页</a>
+                <a id="prev" href="javascript:changePage(-1)">上一页</a>
+                <a id="next" href="javascript:changePage(-2)">下一页</a>
+                <a href="javascript:void(0);" onclick="changePage('{{pageCount}}');">尾页</a>
+            </div>
+            <!-- 分页 end -->
+            
+        </div>
+    </div>
+
+    
+
+
+
+<div id="footer">
+    <div class="footer">
+        <div class="footer-content">
+            <span class="copyRight">
+                
+                <p style="text-align:center">已通过ISO27001:2022信息认证，版权所有内蒙古伊利实业集团股份有限公司&nbsp;Powered&nbsp;by <a href="http://www.dayee.com" target="_blank">Dayee</a>.</p>
+            </span>
+        </div>
+    </div>
+</div>
+    
+    
+    
+
+<!-- 新建简历 -->
+    <div id="uploadResume" style="display: none;">
+        <div class="login-main">
+            
+            <label class="uploadLabel">
+              <form style="width:100%;height:100%;position:relative;" class="attachmentResume" name="attachmentResume" enctype="multipart/form-data" method="post" target="_blank" 
+                              action="/wt/yili/web/templet1000/index/corpprimaryResume1000yili!addResumeByAttachment?operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fe3d4700e5e4d94076a647654762242993a13c636b87308ec4f53b814a157f3d8e47ca29b8e0bc7e76ca49a3b61982494ec3b96dc8e5a753f9c14b6ac1b7946d5c07197032cb9eee4e" >
+                 <input type="hidden" id="recruitTypeForFileCV" name="recruitType" value="" />
+                 <input type="hidden" name="brandCode" value="1" />
+                 <input type="hidden" name="userType" id="userType" value=""/>
+                 <input type="hidden" id="lanTypeAttachment" name="lanTypeAttachment" value="1"/>
+                 <input type="hidden" id="currentPostIdForFileCV" name="currentPostId" value="" />
+                              
+                <input type="file" name="resumeAttachment" id="resumeAttachment" onchange="changeFile(this);">
+                <img src="https://hztp.hotjob.cn/wt/component1000/corp/yili/images/uploadImg.png" alt=""/>
+                <p style="margin: 0;font-size: 12px;color: #999999;">点击图标上传简历</p>
+             </form>
+             
+                
+            </label>
+            <p style="color: #fff;line-height: 50px;" class="fileName">文件名称</p>
+            <p style="color: #b2b2b2;line-height: 50px;">可以上传html、htm、pdf、doc、docx、txt、xls、mht;</p>
+            <div>
+                <button class="button button--winona style_lightred uploadResumeNot bgc8dadd4 cursor" data-text="取消">
+                    <span>取消</span>
+                </button>
+                <button class="button button--winona style_red uploadResume bgc2b60ab cursor" data-text="上传">
+                    <span>上传</span>
+                </button>
+            </div>
+            <a class="fillResume cursor" onclick="creatNewRsume(2);">在线去填写简历</a>
+        </div>
+        <!-- 在线填写简历. -->
+        <form class="primaryResume" name="primaryResume" action="/wt/yili/web/index/showNewResume?operational=9534c4f22dc4262736c3bf2f87dd883e9ea04c03f802571f8d4b565c674e8dc334dad93f6bb6801c233f3f12a7fce3d01e095501133be129" method="post" target="play">
+            <input type="hidden" id="recruitTypeForCV" name="recruitType" value="">
+            <input type="hidden" id="brandCode" name="brandCode" value="1">
+            <input type="hidden" id="lanType" name="lanType" value="">
+            <input type="hidden" id="postType" name="postType" value="">
+            <input type="hidden" id="currentPostIdForCV" name="currentPostIdForCV" value=""/>
+            
+                <input type="hidden" id="fromApply" name="fromApply" value="0" />
+            
+        </form>
+    </div>
+    
+<!-- 创建简历. -->
+<script type="text/javascript">
+function creatNewRsume(type){
+    
+    var maxResumeNum  = ''-0;
+    var userResumeNum = ''-0;
+    if(userResumeNum+1>maxResumeNum){
+        alertLayer('您的简历数已经达到最大简历数！不能继续添加！');
+        return ;
+    }
+    
+    var recruitTypeForFileCV = $(".layui-layer #recruitTypeForFileCV").val();
+    var recruitTypeForCV = $(".layui-layer #recruitTypeForCV").val();
+    if(recruitTypeForCV=="" && recruitTypeForFileCV==""){
+        var recruitType = 1;
+        var typeArr = $(".layui-layer .regType li").find("i");
+        $.each(typeArr,function(index){
+            var $this = $(this);
+            if($this.hasClass("on")){
+                recruitType = $this.attr("value");
+                return false;
+            }
+        });
+        $(".layui-layer #recruitTypeForFileCV").val(recruitType);
+        $(".layui-layer #recruitTypeForCV").val(recruitType);
+    }
+
+    if(type=='1'){
+        var resumeAttachment = $(".layui-layer #resumeAttachment");
+        if(resumeAttachment.val()==''){
+            alertLayer('请选择上传附件！');
+            return ;
+        }else{
+            var url=resumeAttachment.val();
+            var fileName=url.split(".");
+            var suffix = fileName[fileName.length-1].toLowerCase();
+            if(!(suffix=="html" || suffix=="htm" || suffix=="pdf" 
+                 || suffix=="doc" || suffix=="docx" || suffix=="txt"
+                 || suffix=="mht" || suffix=="xls" || suffix=="xlsx")){
+                alertLayer('上传简历格式为html,htm,pdf,doc,docx,txt,xls,xlsx,mht等.');
+                return ;
+            }
+        }
+        $(".layui-layer .attachmentResume").submit();
+    } else if(type=='2'){
+        var fopForm = $(".layui-layer .primaryResume");
+        var currentPostId = fopForm[0].currentPostIdForCV.value;
+        if(currentPostId!=''){
+            fopForm[0].action += "&currentPostId=" + currentPostId;
+        }
+        fopForm.submit();
+    }
+    $(".layui-layer #recruitTypeForFileCV").val("");
+    $(".layui-layer #recruitTypeForCV").val("");
+    
+    layer.closeAll();
+}
+
+function changeFile(_this){
+    var nameArea = $(".layui-layer .fileName");
+    var fileName = $(_this).val().substring($(_this).val().lastIndexOf("\\")+1,$(_this).val().length);
+    nameArea.text("文件名称：" + fileName);
+    nameArea.css("color","#b2b2b2");
+}
+</script>
+
+
+
+</body>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#postListBody',
+        data: {
+           pageCount : '',
+           positionList : {}
+      }
+    });
+    
+    var _currentPage = 1;
+    var pageCount;
+
+    var url = "/wt/yili/web/json/position/list"
+        + "?positionType="
+        + "&comPart="
+        + "&sicCorpCode="
+        + "&brandCode=1"
+        + "&releaseTime="
+        + "&trademark=1"
+        + "&recruitType=1"
+        + "&projectId="
+        + "&lanType=1"
+        + "&workPlace="
+        + "&page=1";
+        
+    var wholeKeyWord = "";
+    if(wholeKeyWord!=null && wholeKeyWord!=""){
+           wholeKeyWord = encodeURIComponent(wholeKeyWord);
+           url += "&keyWord=" + wholeKeyWord;
+    }else{
+           url += "&keyWord=";
+    }
+    
+    $(function() {
+
+        
+        
+        getPostList(url,_currentPage);
+        
+
+        
+    });
+
+    function getPostList(action,currentPage){
+        $.getJSON(action,function(json){
+            if(json!=null && json!=undefined){
+                var html = "";
+                var corpCode = 'yili';
+                var recs_json = [];
+                $.each(json.postList,function(i,obj){
+                    
+                    var postName = obj.postName;
+                    var recruitNum = obj.recruitNum;
+                    if(recruitNum==null || recruitNum==""){
+                        recruitNum = "若干";
+                    } else {
+                        recruitNum += "人";
+                    }
+                    var workingTreatment = obj.workingTreatment;
+                    if(workingTreatment==null||workingTreatment==""){
+                        workingTreatment = "面议";
+                    }
+                    var workPlace = obj.workPlace;
+                    var orgName = obj.orgName;
+                    var postType = obj.postType;
+                    var education = obj.education;
+                    var publishDate = obj.publishDate;
+                    var postId = obj.postId;
+                    var recruitType = obj.recruitType;
+                    var importPost = obj.importPost;
+                    
+                    var p = {postName:postName, recruitNum:recruitNum, workingTreatment:workingTreatment, workPlace:workPlace, orgName:orgName, postType:postType,education:education,
+                               publishDate:publishDate, postId:postId, recruitType:recruitType, importPost:importPost};
+                    recs_json.push(p);
+                });
+                vm.positionList = recs_json;
+                
+                pageCount = json.pageCount;
+                _currentPage = currentPage;
+                
+                vm.pageCount = pageCount;
+                
+                $("#postListTbody").show();
+                
+                if(pageCount>1){
+                    
+                    $(".pagenation").show();
+                    pagenationInit(_currentPage,pageCount);
+                    
+                    $(".page").click(function(){
+                        changePage($(this).html());
+                    });
+                } else {
+                    $(".pagenation").hide();
+                }
+                
+            }
+        });
+    }
+    
+    function searchPostByCondition(){
+        
+        _currentPage = 1;
+        searchPostList();
+    }
+    
+    function searchPostList(){
+        
+        var v_trademark = 0;//品牌
+        var v_kw = "";//关键字
+        var v_pn = "";//职位名称
+        var v_p = "";//地点
+        var v_pt = 0;//职位类型
+        var v_t = "";//发布时间
+        var v_recruitType = 0;//招聘类型
+        var lanType = '';//lanuage
+        var brandCode = '1';//网站品牌
+        var v_cp = "";
+        if (null != document.getElementById("keyWordV")) {
+                v_kw = $("#keyWordV").val();//关键字
+                var v_kw_placeholder = $("#keyWordV").attr("placeholder");
+                if(v_kw==v_kw_placeholder){
+                    v_kw = "";
+                }
+        }
+        if (null != document.getElementById("positionNameV")) {
+                v_pn = $("#positionNameV").val();//职位名称
+                var v_pn_placeholder = $("#positionNameV").attr("placeholder");
+                if(v_pn==v_pn_placeholder){
+                    v_pn = "";
+                }
+        }
+        if (null != document.getElementById("workPlaceNameV")) {
+                v_p = $("#workPlaceNameV").val();//地点
+        }
+        
+        if (null != document.getElementById("comPartV")) {
+            v_cp = $("#comPartV").val();//地点
+        }
+
+        if (null != document.getElementById("positionTypeV") ) {
+            v_pt = $("#positionTypeV").val();//职位类型
+        }
+        if (null != document.getElementById("releaseTimeCodeV")) {
+            v_t = $("#releaseTimeCodeV").val();//发布时间
+        }
+        if (null != document.getElementById("recruitTypeV")) {
+        	v_recruitType = $("#recruitTypeV").val();//招聘类型
+        }
+        
+        var surl = "/wt/yili/web/json/position/list?operational=9534c4f22dc42627ea99b79c69b1ed509db2aae97a28615d01ca2dbbffb4c4fbb89b7df11b02a8e15a7d04cf7b958a4aec342de9ebb2b45a"
+            + "&positionType=" + v_pt
+            + "&comPart=" + v_cp
+            + "&brandCode=" + brandCode
+            + "&releaseTimeCode=" + v_t
+            + "&trademark=" + v_trademark
+            + "&recruitType=" + v_recruitType
+            + "&projectId="
+            + "&lanType=" + lanType
+            + "&positionName=" + encodeURIComponent(v_pn)
+            + "&workPlace=" + encodeURIComponent(v_p)
+            + "&keyWord=" + encodeURIComponent(v_kw)
+            + "&page=" + _currentPage;
+
+        getPostList(surl,_currentPage);
+    }
+    
+    function changePage(objvalue){
+        if(objvalue==-1){ //上一页
+            if(_currentPage<=1){
+                _currentPage = 1;
+                pageView();
+            }else{
+                var pageUp = _currentPage-1;
+                _currentPage = pageUp;
+                pageView();
+            }
+        }else if(objvalue==-2){ //下一页
+            if(pageCount == _currentPage){
+                _currentPage = pageCount;
+                pageView();
+            }else{
+                var pageDown = _currentPage+1;
+                _currentPage = pageDown;
+                pageView();
+            }
+        }else{
+            _currentPage = parseInt(objvalue);
+            pageView();
+        }
+    }
+
+    function pageView(){
+    	
+    	$(".hideTR").remove();
+        $(".clickHot").removeClass("open");
+        $(".clickHot").css("background-color", "#fff");
+    	
+        $("#currentPage").val(_currentPage);
+        searchPostList();
+    }
+    
+    function showPostDetail(_this) {
+
+        var $this = $(_this);
+
+        var postId = $this.attr("data_postid");
+        var recruitType = $this.attr("data_recruittype");
+
+        var $hideTr = $("#" + postId + "_" + recruitType + "");
+
+        if ($hideTr.length > 0) {
+            if ($hideTr.hasClass("open")) {
+                $this.removeClass("open");
+                $hideTr.removeClass("open");
+                $this.css("background-color", "#fafafb");
+            } else {
+                
+            	$(".hideTR").removeClass("open");
+                $(".clickHot").removeClass("open");
+
+                $hideTr.addClass("open").siblings().removeClass("open");
+                $this.addClass("open");
+                $this.css("background-color", "#ebf8fd");
+                
+            }
+        } else {
+            var url = "/wt/yili/web/json/position/detail?operational=9534c4f22dc42627ea99b79c69b1ed509db2aae97a28615dbbde268e56a4e535a09b6019675bd02d7905d04cac7d6c015ff69bdff664c3f3"
+                    + "&recruitType=" + recruitType + "&postId=" + postId;
+            $.getJSON(url, function(json) {
+                if (json != null && json != undefined) {
+
+                    var html = '<tr class="hideTR open"' + 'id="' + json.postInfo.postId + "_" + json.postInfo.recruitType + '">' +
+                        '<td colspan="99"><div class="content-layout-1"><dl><dt>工作职责</dt><dd>' +
+                        json.postInfo.workConcet +
+                        '</dd></dl><dl class="mt10"><dt>工作要求</dt><dd>' +
+                        json.postInfo.serviceCondition +
+                        '</dd></dl><div class="bub" pt-id="' + json.postInfo.postId + '" pt-reType="' + json.postInfo.recruitType +
+                        '" postIdToken="' + json.postInfo.postIdToken + '">' +
+                        '<span class="pub-button-small style_blue" onclick="applyPosition(this)" ><img src="/wt/component1000/corp/yili/images/btn-icon01.png" alt=""/>立即申请</span>' +
+                        '<span class="pub-button-small style_blue ml10" onclick="ajaxFavorite(this,0)" ><img src="/wt/component1000/corp/yili/images/btn-icon02.png" alt=""/>收藏职位</span></div> </div></td></tr>';
+
+                    $(".hideTR").removeClass("open");
+                    $(".clickHot").removeClass("open");
+
+                    $this.addClass('open');
+                    $this.after(html);
+                    $this.css("background-color", "#ebf8fd");
+                }
+            });
+        }
+    }
+    $(function() {
+        $(".sequences>div").click(function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            var index = $(this).index();
+            $(".tab_box > div").eq(index).show().siblings().hide();
+
+            var selectedCode = $(this).attr("data-code");
+            $("#firstComPartV").val(selectedCode);
+            searchPostByFirstOrg();
+        });
+    });
+    //立即申请
+    function applyPosition(_this){
+        
+        var $this = $(_this).parent();
+        var _postId = $this.attr("pt-id");
+        var _recruitType = $this.attr("pt-reType");
+        var _postIdToken = $this.attr("postIdToken");
+        
+        var url = "/wt/yili/web/templet1000/index/corpwebPosition1000yili!dispatchRegist?operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fee1e8ca273a393012fa66ad434c5c57923ff7364f3f4ad99a4c98492a720e80b7b5f0a76534ef4aaf27047ac48aca25a57bb3b8b7786f1e582c67304fd7b436ca";
+        
+        var userType = "";
+        var recruitType = _recruitType;
+        var submitUserId = _postIdToken;
+        var postId = _postId;
+        
+        jQuery.post(url,{submitUserId:submitUserId,postId:postId,recruitType:recruitType,forJsonp:true},
+             function(data){
+                var dataArray = data.split("_,,_");
+                var datamsg = dataArray[0];
+                var msg = dataArray.length>0? dataArray[1]: _MSG_ERROR_CAUSE_APPLY;
+                 if(datamsg==1 || datamsg==2 || datamsg==3 || datamsg==32){
+                    layer.closeAll();
+                    $("#loginOrNot .goOutHint").text("请先登录，登录后才可投递");
+                    isLoginShow();
+                 }else if(datamsg==4){
+                    layer.closeAll();
+                    $("#tipsDiv .goOutHint").text("校园用户不能应聘社会职位！");
+                    tipsDivShow();
+                 }else if(datamsg==5){
+                     layer.closeAll();
+                     $("#tipsDiv .goOutHint").text("社会用户不能应聘校园职位！");
+                     tipsDivShow();
+                 }else if(datamsg==7){
+                     layer.closeAll();
+                     $("#tipsDiv .goOutHint").text("您初筛或测评已经失败，请不要在投递该职位！");
+                     tipsDivShow();
+                 }else if(datamsg==9){
+                    //alert("跳转到选择简历页面");
+                    window.location= "/wt/yili/web/templet1000/index/corpshowNewDeliveryRecordyili!chooseResume?brandCode=1&operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fe03e48ecb08dc264dcd1f096b06dfb18b7410d7f0fda77def38b9762b0a978c6446614a9dc50bd966391d71c2987de0509f7c1231002ec3fa27047ac48aca25a57bb3b8b7786f1e582c67304fd7b436ca";
+                 }else if(datamsg==10){
+                    //alert("没有对应类型简历.")
+                    layer.closeAll();
+                    
+                    $("#recruitTypeForFileCV").val(_recruitType);
+                    $("#currentPostIdForFileCV").val(_postId);
+                    
+                    $("#recruitTypeForCV").val(_recruitType);
+                    $("#currentPostIdForCV").val(_postId);
+                    
+                    uploadResumeShow();
+                 }else if(datamsg==11){
+                     layer.closeAll();
+                     $("#tipsDiv .goOutHint").text("对不起，您已经应聘过该职位，不能重复投递！");
+                     tipsDivShow();
+                 }else if(datamsg==33){
+                     layer.closeAll();
+                     $("#tipsDiv .goOutHint").text("请求延迟，请尝试刷新页面再投递。");
+                     tipsDivShow();
+                }else{
+                    layer.closeAll();
+                    $("#tipsDiv .goOutHint").text(msg);
+                    tipsDivShow();
+                 }
+             });
+    }
+
+    function ajaxFavorite(_this,type){
+        var userId = '';
+        if(userId == "" || userId == null){
+            layer.closeAll();
+            $("#loginOrNot .goOutHint").text("请先登录，登录后才可收藏");
+            isLoginShow();
+            return false;
+        }
+        
+        var $this = $(_this).parent();
+        var postId = $this.attr("pt-id");
+        
+        var recruitType = "1";
+        
+        var url = "";
+        if(type == 0){
+            url = "/wt/yili/web/templet1000/index/corpfavorate1000yili!ajaxAddNewFavorate?operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fee3a0221adfb1907ca1730a2d37642becf778780305583fbaf7762e3269eef2c06b42c1ddb595609dc3b96dc8e5a753f9c14b6ac1b7946d5c07197032cb9eee4e";
+        }else if(type == 1){
+            url = "/wt/yili/web/templet1000/index/corpfavorate1000yili!ajaxDeleteFavorate?operational=9534c4f22dc42627c1d97f317df5fc1c2e71aa0f6f3026985beb60a9c51284fee3a0221adfb1907ca1730a2d37642becf778780305583fbaeedc620ce3e3bae26b42c1ddb595609dc3b96dc8e5a753f9c14b6ac1b7946d5c07197032cb9eee4e";
+        }
+        
+        var dataStr = "postId=" + postId + "&recruitType=" + recruitType;
+        $.ajax({
+            type:"POST",
+            dataType:"text",
+            url:url,
+            data:dataStr,
+            success: function(data){
+                data = $.trim(data);
+                if(data=="0"){
+                    addFavorateSuShow();
+                }else if(data=="1"){
+                    repeatFavorateShow();
+                }
+            },
+            error: function(data){
+                alertLayer("网络问题，请稍后再试！");
+            }
+        });
+    }
+    
+    function searchPostByFirstOrg(){
+    	
+    	$("#sencondComPartV").empty();
+    	
+    	var $_this = $("#firstComPartV");
+    	
+    	if($_this != ""){
+    		var options = $("#firstComPartV option:selected");
+            var index = options.attr("index");
+
+            var optionsArr = $(".sencondOrg_" + index + "");
+            
+            if(optionsArr.length>0){
+            	$("#sencondComPartV").append('<option value="'+ $_this.val() +'">--请选择--</option>');
+            	$.each(optionsArr,function(index){
+            		$('#sencondComPartV').append($('<option>', { value : $(this).attr("value") }).text($(this).text()));
+            	});
+            	$("#sencondComPartV").show();
+            }else{
+            	$("#sencondComPartV").hide();
+                $("#sencondComPartV").empty();
+            }
+    	} else {
+    		$("#sencondComPartV").hide();
+    		$("#sencondComPartV").empty();
+    	}
+    	
+    	$("#comPartV").val($_this.val());
+        searchPostByCondition();
+    }
+    
+    function searchPostBySencondOrg(){
+        
+    	var $_this = $("#sencondComPartV");
+    	
+    	$("#comPartV").val($_this.val());
+        searchPostByCondition();
+    }
+    
+</script>
+
+</html>

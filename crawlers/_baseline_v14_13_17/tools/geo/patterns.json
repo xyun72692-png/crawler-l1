@@ -1,0 +1,10 @@
+{
+  "note": "域名后缀模板也放在数据里；discover.py 只做字符串拼接 + DNS，不含任何具体域名",
+  "suffixes": ["rc.com", "rcw.com", "rczp.com", "job.com", "rc.net"],
+  "prefix_templates": ["{pinyin}", "{abbr}", "www.{pinyin}", "www.{abbr}"],
+  "province_suffixes": ["hr.com"],
+  "province_prefix_templates": ["{pinyin}", "{abbr}", "www.{pinyin}", "www.{abbr}"],
+  "max_candidates_per_city": 6,
+  "max_candidates_per_province": 4,
+  "_history": "2026-11-15 加 province_suffixes=[hr.com]：v13 的 5 种后缀全带城市名，zjhr.com（省+hr）从第一步就生成不出来"
+}
