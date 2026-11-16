@@ -1,0 +1,59 @@
+# ============================================================
+#  通用爬虫工程仓库（与安装路径无关；运行期目录可用 CRAWLER_HOME 覆盖）
+#  原则：只提交「代码 + 工具 + 测试 + 文档」
+#        抓下来的数据、日志、附件、虚拟环境、备份归档一律不进仓库
+# ============================================================
+
+# ---- 虚拟环境（278 MB，可用 requirements.txt 重建）----
+/venv/
+
+# ---- 抓取产物（体积大，且含第三方站点内容，不公开）----
+/data/
+!tests/data/
+/out/
+/logs/
+/installers/
+/manifests/
+/sites/registry.json
+
+# ---- 桌面归档备份（396 MB）----
+/archive/
+
+# ---- 文档的历史副本（仓库本身就是历史，不需要文件级备份）----
+docs/_backup_*/
+docs/*.bak
+docs/*.bak-*
+
+# ---- 基线快照：只保留当前活跃的那一份，其余 29 份不进仓库 ----
+crawlers/_baseline_*
+!crawlers/_baseline_v14_13_20
+
+# ---- Python 缓存 ----
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# ---- 运行时临时文件 ----
+*.tmp
+*.log
+*.corrupt-*
+*_cooldown_*.json
+elevation-log.jsonl
+
+# ---- 一次性脚本（历史记录在 git log 里就够了；只留基线受管的 _murmur3.py）----
+tools/_*.py
+!tools/_murmur3.py
+crawlers/_engine_snapshot*.py
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 补丁备份，不入库
+*.a5bak
+*.bak
