@@ -1,0 +1,95 @@
+{
+  "job": "wzrc_inc_v6check",
+  "run_id": "wzrc_inc_v6check-20261111-155445",
+  "status": "success",
+  "reason": "ok",
+  "mode": "incremental",
+  "stop_reason": "",
+  "paginate": "number",
+  "started_at": "2026-11-11T15:54:45+08:00",
+  "finished_at": "2026-11-11T15:54:50+08:00",
+  "elapsed_sec": 5.0,
+  "avg_sec_per_page": 5.03,
+  "config": {
+    "url_template": "https://www.wzrc.net/index.php?m=&c=Jobs&a=jobs_list&citycategory=wenzhou&jobtag=147&settr=3&sort=rtime&page={page}",
+    "page_start": 1,
+    "page_end": 5,
+    "delay_sec": [
+      3.0,
+      5.0
+    ],
+    "timeout_sec": 25,
+    "retries": 1,
+    "dedup_key": "detail_url",
+    "respect_robots": true,
+    "paginate": "number",
+    "max_pages": 200
+  },
+  "stats": {
+    "pages_total": 6,
+    "pages_ok": 1,
+    "pages_skipped": 5,
+    "pages_empty": 0,
+    "pages_blocked": 0,
+    "pages_failed": 0,
+    "records_new": 0,
+    "records_dup": 5,
+    "detail_failed": 0,
+    "retry_after_waits": 0,
+    "retry_after_max_sec": 0,
+    "soft_block_detected": 0,
+    "canary_requests": 0,
+    "pages_soft_blocked": 0,
+    "resp_bytes_min": 86604,
+    "resp_bytes_total": 86604,
+    "cards_total": 5,
+    "detail_pending_after_run": 0,
+    "json_total_scope": "global",
+    "json_total_complete_set": false
+  },
+  "cooldown": null,
+  "pages_declared": 5,
+  "pages_planned": 20,
+  "pages_effective": 5,
+  "coverage": 1.0,
+  "truncated": false,
+  "page_size": "",
+  "page_size_probe": false,
+  "datafile": {
+    "records_before_run": 24,
+    "records_new_this_run": 0,
+    "records_dup_this_run": 5,
+    "total_after_run": 24
+  },
+  "field_signature": {
+    "field_count": 13,
+    "fields": [
+      "area_in_title",
+      "company",
+      "detail_url",
+      "edu_req",
+      "exp_req",
+      "headcount",
+      "job_nature",
+      "published",
+      "region",
+      "salary_raw",
+      "source_site",
+      "title",
+      "welfare"
+    ]
+  },
+  "per_page": {},
+  "per_page_summary": {
+    "pages_recorded": 0,
+    "min": 0,
+    "max": 0,
+    "avg": 0
+  },
+  "anomalies": [],
+  "artifacts": {
+    "data": "D:\\agent-work\\data\\raw\\wzrc_inc_v6check.jsonl",
+    "log": "D:\\agent-work\\logs\\crawler-wzrc_inc_v6check.log",
+    "state": "D:\\agent-work\\manifests\\state_wzrc_inc_v6check.json"
+  }
+}
